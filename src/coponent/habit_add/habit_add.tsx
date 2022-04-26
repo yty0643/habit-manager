@@ -1,18 +1,16 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { IADHabit } from '../../pages/main/main';
 
-const HabitAdd = ({addHabit}:{addHabit : IADHabit}) => {
-    const inputRef = useRef<HTMLInputElement>(null);
+interface Iprops{
+    addHabit: IADHabit,
+    addInpRef: React.RefObject<HTMLInputElement>,
+}
+
+const HabitAdd = ({addHabit, addInpRef}: Iprops) => {
     return (
         <div>
-            <input ref={inputRef} type="text" name="" id="" />
-            <button onClick={() => {
-                if (!inputRef.current) return;
-                addHabit({
-                    id: Date.now(),
-                    name: inputRef.current.value,
-                    count: 0,
-            })}}>등록</button>
+            <input ref={addInpRef} type="text" name="" id="" />
+            <button onClick={()=>{ addHabit() }}>등록</button>
         </div>
     )
 }

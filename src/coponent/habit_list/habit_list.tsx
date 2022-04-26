@@ -1,9 +1,9 @@
 import React from 'react';
-import { IADHabit, IHabits } from '../../pages/main/main';
+import { IProps } from '../../pages/main/main';
 import HabitItem from '../habit_item/habit_item';
 import HabitAdd from '../../coponent/habit_add/habit_add';
 
-const HabitList = ({ habits, addHabit, delHabit  } : { habits : IHabits, addHabit : IADHabit, delHabit : IADHabit }) => {
+const HabitList = ({ habits, addInpRef, addHabit, delHabit } : IProps) => {
     return (
         <div>
             <ul>
@@ -11,11 +11,13 @@ const HabitList = ({ habits, addHabit, delHabit  } : { habits : IHabits, addHabi
                     return (
                         <HabitItem key={key}
                             habit={habits[Number(key)]}
-                            delHabit={delHabit}/>
+                                                        delHabit={delHabit}/>
                     )
                 })}
             </ul>
-            <HabitAdd addHabit={addHabit} />
+            <HabitAdd addHabit={addHabit}
+                addInpRef={addInpRef}
+            />
         </div>
     )
 }

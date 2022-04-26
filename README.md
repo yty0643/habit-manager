@@ -1,46 +1,40 @@
-# Getting Started with Create React App
+# Habit-manager
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+---
 
-## Available Scripts
+# 문제 해결 과정
 
-In the project directory, you can run:
+처음 다루는 툴이 많다 보니 프로젝트 개발 중에 여러 문제가 발생하고 있다. 그 중 중요하다고 생각되는 문제는 해결 과정을 기록하고자 한다.
 
-### `npm start`
+## [typescript] 타입이 너무 많아서 가독성에 방해가 된다.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+하위 컴포넌트에서 [props] 로 많은 것을 넘겨받다 보니, 작성할 타입이 너무 많아지는 문제가 발생했다.
+개발 초기에 신경쓰일 정도이면 나중에는 더욱 심각해질 문제라고 판단되어 해결책을 찾으려고 한다.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```javascript
+const HabitList = ({ habits, addHabit, delHabit } : {
+  habits: IHabits,
+  addHabit: IADHabit,
+  delHabit: IADHabit,
+}) => { ... };
+```
 
-### `npm test`
+> 3개의 [props] 에 2개의 [interface]를 적용하고 있는 모습이다.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 해결방안
 
-### `npm run build`
+결국 [props] 의 [interface] 를 정의해서 사용하기로 했다.
+사용한 [interface] 가 1개 늘어났고, 시원한 해결책은 아니라서 아쉽지만 찾아본 결과 최선이라 생각된다...
+추후 더 좋은 방법을 찾게되면 수정하겠다.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```javascript
+export interface IProps {
+  habits: IHabits;
+  addHabit: IADHabit;
+  delHabit: IADHabit;
+}
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+const HabitList = ({ habits, addHabit, delHabit } : IProps) => { ... };
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+> 필자는 [IProps] 를 상위 컴포넌트에서 선언하고 하위 컴포넌트에서 참조하여 사용했다.

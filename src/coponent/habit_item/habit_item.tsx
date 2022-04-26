@@ -1,14 +1,22 @@
 import React from 'react';
 import { IHabit, IADHabit } from '../../pages/main/main';
 
-const HabitItem = ({ habit, delHabit }: { habit: IHabit, delHabit : IADHabit }) => {
+interface Iprops{
+    habit: IHabit,
+    delHabit: IADHabit,
+}
+
+const HabitItem = ({ habit, delHabit }: Iprops) => {
     
     return (
-        <div>
+        <li>
             <p>{habit?.id}</p>
             <p>{habit?.name}</p>
             <p>{habit?.count}</p>
-        </div>
+            <button onClick={() => {
+                delHabit(habit);
+            }}>del</button>
+        </li>
     )
 }
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import HabitList from '../../coponent/habit_list/habit_list';
 
 export interface IHabit{
@@ -8,34 +8,49 @@ export interface IHabit{
 }
 
 export interface IHabits{
-    [key:number]:IHabit
+    [key: number]:IHabit
 }
 
 export interface IADHabit{
-    (habit: IHabit): void;
+    (habit?: IHabit): void;
 }
 
-
+export interface IProps{
+    habits: IHabits,
+    addInpRef: React.RefObject<HTMLInputElement>,
+    addHabit: IADHabit,
+    delHabit: IADHabit,
+}
 
 const Main = () => {
     const [habits, setHabits] = useState<IHabits>({});
-    const props:{habits: IHabits, addHabit: IADHabit, delHabit: IADHabit} = {
+    const addInpRef = useRef<HTMLInputElement>(null);
+    
+    const props: IProps = {
         habits,
-        addHabit: (habit: IHabit) => {
+        addInpRef,
+        addHabit: () => {
             setHabits(habits => {
+                if (!addInpRef.current) return habits;
                 const temp = { ...habits };
-                temp[habit.id] = habit;
+                const newHabit: IHabit = {
+                    id: Date.now(),
+                    name:addInpRef.current.value,
+                    count:0,
+                }
+                temp[newHabit.id] = newHabit;
                 return temp;
-            })
+            });
         },
-        delHabit: (habit: IHabit) => {
+        delHabit: (habit) => {
             setHabits(habits => {
-                const temp = { ...habits }
+                if (!habit) return habits;
+                const temp = { ...habits };
                 delete temp[habit.id];
                 return temp;
-            })
+            });
         },
-    }
+    };
 
     return (
         <div>
