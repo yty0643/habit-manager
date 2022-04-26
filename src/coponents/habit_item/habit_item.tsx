@@ -1,9 +1,9 @@
 import React from 'react';
-import { IHabit, IADHabit } from '../../pages/main/main';
+import { IHabit, IDelHabit } from '../../pages/main/main';
 
 interface Iprops{
     habit: IHabit,
-    delHabit: IADHabit,
+    delHabit: IDelHabit,
 }
 
 const HabitItem = ({ habit, delHabit }: Iprops) => {

@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import HabitList from '../../coponent/habit_list/habit_list';
+import HabitList from '../../coponents/habit_list/habit_list';
 
 export interface IHabit{
     id: number,
@@ -11,15 +11,19 @@ export interface IHabits{
     [key: number]:IHabit
 }
 
-export interface IADHabit{
-    (habit?: IHabit): void;
+export interface IAddHabit{
+    (): void;
+}
+
+export interface IDelHabit{
+    (habit: IHabit): void;
 }
 
 export interface IProps{
     habits: IHabits,
     addInpRef: React.RefObject<HTMLInputElement>,
-    addHabit: IADHabit,
-    delHabit: IADHabit,
+    addHabit: IAddHabit,
+    delHabit: IDelHabit,
 }
 
 const Main = () => {
@@ -30,21 +34,20 @@ const Main = () => {
         habits,
         addInpRef,
         addHabit: () => {
+            const newHabit: IHabit = {
+                id: Date.now(),
+                name: addInpRef.current?.value || "",
+                count: 0,
+            }
             setHabits(habits => {
-                if (!addInpRef.current) return habits;
                 const temp = { ...habits };
-                const newHabit: IHabit = {
-                    id: Date.now(),
-                    name:addInpRef.current.value,
-                    count:0,
-                }
                 temp[newHabit.id] = newHabit;
                 return temp;
-            });
+            })
+            addInpRef.current!.value = "";
         },
         delHabit: (habit) => {
             setHabits(habits => {
-                if (!habit) return habits;
                 const temp = { ...habits };
                 delete temp[habit.id];
                 return temp;
