@@ -1,7 +1,7 @@
 import React from 'react';
-import { IProps } from '../../pages/main/main';
 import HabitItem from '../habit_item/habit_item';
-import HabitAdd from '../../coponents/habit_add/habit_add';
+import HabitAdd from '../habit_add/habit_add';
+import { IProps } from '../../VC/habit/habit';
 
 const HabitList = ({ habits, addInpRef, addHabit, delHabit } : IProps) => {
     return (

@@ -1,5 +1,5 @@
 import React from 'react';
-import { IAddHabit } from '../../pages/main/main';
+import { IAddHabit } from '../../VC/habit/habit';
 
 interface Iprops{
     addHabit: IAddHabit,
@@ -9,12 +9,17 @@ interface Iprops{
 const HabitAdd = ({addHabit, addInpRef}: Iprops) => {
     return (
         <div>
-            <input ref={addInpRef} type="text"
+            <input
+                ref={addInpRef}
+                type="text"
                 onKeyUp={(event) => {
-                    if (event.key == 'Enter')
+                    if (event.key === 'Enter')
                         addHabit();
             }}/>
-            <button onClick={() => { addHabit() }}>등록</button>
+            <button
+                onClick={() => {
+                    addHabit()
+            }}>등록</button>
         </div>
     )
 }

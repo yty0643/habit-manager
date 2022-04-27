@@ -1,13 +1,12 @@
 import React from 'react';
-import { IHabit, IDelHabit } from '../../pages/main/main';
+import { IHabit, IDelHabit } from '../../VC/habit/habit';
 
-interface Iprops{
+interface IProps{
     habit: IHabit,
     delHabit: IDelHabit,
 }
 
-const HabitItem = ({ habit, delHabit }: Iprops) => {
-    
+const HabitItem = ({ habit, delHabit }: IProps) => {
     return (
         <li>
             <p>{habit?.id}</p>
