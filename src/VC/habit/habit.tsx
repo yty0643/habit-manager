@@ -54,11 +54,7 @@ const Habit = () => {
         },
     };
     
-    return (
-        <div>
-            <HabitList {...props} />
-        </div>
-    )
+    return <HabitList {...props} />
 }
 
 export default Habit;

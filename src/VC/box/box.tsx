@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import BoxList from '../../VAC/box_list/box_list';
+import Timer from '../timer/timer';
 
 export interface IBox{
     date: string,
@@ -13,14 +14,14 @@ export interface IBoxes{
 
 const Box = () => {
     const [boxes, setBoxes] = useState<IBoxes>({});
-    const [json, setJson] = useState<IBoxes>({
+    const [json, setJson] = useState<IBoxes>({ //임시 데이터 추후 DB
         "2022-04-24":{
             date: "2022-04-24",
             habitTime: {
                 1: "11:06:56",
                 2: "14:16:56",
             },
-            totalTime: 3,
+            totalTime: 3600000,
         },
         "2022-04-26":{
             date: "2022-04-26",
@@ -28,14 +29,13 @@ const Box = () => {
                 1: "14:06:56",
                 2: "14:16:56",
             },
-            totalTime: 0.2,
+            totalTime: 36000000,
         },
     });
 
-    const initBoxes = useCallback(() => {
+    const initBoxes: () => void = useCallback(() => {
         const temp: IBoxes = {};
         const day = new Date().getDay()+1;
-        console.log(day);
         for (let i = 363+day; i >= 0; i--){
             const date = new Date();
             date.setDate(date.getDate() - i);
@@ -47,15 +47,16 @@ const Box = () => {
             };
         }
         setBoxes(temp);
-    }, [json]); 
+    }, [json]);
     
     useEffect(() => {
         initBoxes();
     }, [json])
     
-    return (
+    return(
         <div>
-            <BoxList boxes={boxes}/>
+            <BoxList boxes={boxes} />
+            <Timer />
         </div>
     )
 }

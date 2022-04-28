@@ -1,4 +1,5 @@
 import React from 'react';
+import Box from '../../VC/box/box';
 import { IHabit, IDelHabit } from '../../VC/habit/habit';
 
 interface IProps{
@@ -15,6 +16,7 @@ const HabitItem = ({ habit, delHabit }: IProps) => {
             <button onClick={() => {
                 delHabit(habit);
             }}>del</button>
+            <Box />
         </li>
     )
 }
