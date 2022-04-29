@@ -13,4 +13,4 @@ const TimerBtn = ({onClick}:{onClick:()=>void}) => {
     )
 }
 
-export default TimerBtn;
+export default React.memo(TimerBtn);

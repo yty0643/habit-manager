@@ -15,4 +15,4 @@ const BoxList = ({ boxes }: { boxes: IBoxes }) => {
         </ul>
     )
 }
-export default BoxList;
+export default React.memo(BoxList);

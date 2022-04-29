@@ -24,4 +24,4 @@ const HabitList = ({ habits, addInpRef, addHabit, delHabit } : IProps) => {
     )
 }
 
-export default HabitList;
+export default React.memo(HabitList);

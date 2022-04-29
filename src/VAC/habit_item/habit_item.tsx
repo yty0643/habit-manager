@@ -21,4 +21,4 @@ const HabitItem = ({ habit, delHabit }: IProps) => {
     )
 }
 
-export default HabitItem;
+export default React.memo(HabitItem);

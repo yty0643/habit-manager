@@ -8,4 +8,4 @@ const TimerTime = ({ timeToS }: { timeToS: string }) => {
     )
 }
 
-export default TimerTime;
+export default React.memo(TimerTime);

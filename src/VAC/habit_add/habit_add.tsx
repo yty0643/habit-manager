@@ -24,4 +24,4 @@ const HabitAdd = ({addHabit, addInpRef}: Iprops) => {
     )
 }
 
-export default HabitAdd;
+export default React.memo(HabitAdd);

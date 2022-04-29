@@ -6,37 +6,40 @@ export interface IBox{
     date: string,
     habitTime: {[key: number]: string},
     totalTime: number,
-}
+    color: string,
+};
 
 export interface IBoxes{
     [key: string]: IBox
-}
+};
 
 const Box = () => {
     const [boxes, setBoxes] = useState<IBoxes>({});
     const [json, setJson] = useState<IBoxes>({ //임시 데이터 추후 DB
-        "2022-04-24":{
+        "2022-04-24": {
             date: "2022-04-24",
             habitTime: {
                 1: "11:06:56",
                 2: "14:16:56",
             },
             totalTime: 3600000,
+            color: "green",
         },
-        "2022-04-26":{
+        "2022-04-26": {
             date: "2022-04-26",
             habitTime: {
                 1: "14:06:56",
                 2: "14:16:56",
             },
             totalTime: 36000000,
+            color: "black",
         },
     });
 
     const initBoxes: () => void = useCallback(() => {
         const temp: IBoxes = {};
-        const day = new Date().getDay()+1;
-        for (let i = 363+day; i >= 0; i--){
+        const day = new Date().getDay() + 1;
+        for (let i = 363 + day; i >= 0; i--) {
             const date = new Date();
             date.setDate(date.getDate() - i);
             const key = date.toISOString().split('T')[0];
@@ -44,21 +47,48 @@ const Box = () => {
                 date: key,
                 habitTime: json[key]?.habitTime || {},
                 totalTime: json[key]?.totalTime || 0,
+                color: json[key]?.color || "grey", //추후 색상 수정(base color)
             };
-        }
+        };
         setBoxes(temp);
     }, [json]);
+
+    const setTodayBox: (time: number, start: string) => void = (time, startTime) => {
+        const today: string = new Date().toISOString().split('T')[0];
+        setBoxes(boxes => ({
+            ...boxes,
+            [`${today}`]: {
+                ...boxes[today],
+                habitTime: {
+                    ...boxes[today].habitTime,
+                    [`${Object.keys(boxes[today].habitTime).length}`]: startTime,
+                },
+                totalTime: time,
+                color: colorSelector(time),
+            },
+        }));
+    };
     
+    const colorSelector: (temp: number) => string = (temp) => {
+        temp /= 1;
+        const hour: number = 3600;
+        if (temp < (2 * hour)) return "red"; // 추후 색상 수정
+        else if (temp < (4 * hour)) return "blue";
+        else if (temp < (6 * hour)) return "skyblue";
+        else if (temp < (8 * hour)) return "skyblue";
+        else return "skyblue";
+    };
+
     useEffect(() => {
         initBoxes();
-    }, [json])
+    }, [json]);
     
-    return(
+    return (
         <div>
             <BoxList boxes={boxes} />
-            <Timer />
+            <Timer setTodayBox={setTodayBox} />
         </div>
-    )
-}
+    );
+};
 
 export default Box;

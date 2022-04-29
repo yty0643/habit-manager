@@ -1,13 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { IBox } from '../../VC/box/box';
+import BoxPreview from '../box_preview/box_preview';
 import styles from './box_item.module.css';
 
 const BoxItem = ({ box }: { box: IBox }) => {
-    const color = "rgb(200, 200, 200)";
-    return (
-        <div className={styles.box} style={{background: color}}>
-        </div>
-    )
-}
+    const [preview, setPreview] = useState<boolean>(false);
 
-export default BoxItem;
+    return (
+        <div
+            className={styles.box}
+            style={{ background: box.color }}
+            onMouseEnter={() => {
+                setPreview(true);
+            }}
+            onMouseLeave={() => {
+                setPreview(false);
+            }}
+        >
+            {preview && <BoxPreview box={box}/>}
+        </div>
+    );
+};
+
+export default React.memo(BoxItem);
