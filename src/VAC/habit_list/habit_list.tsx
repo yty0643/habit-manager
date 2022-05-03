@@ -3,7 +3,7 @@ import HabitItem from '../habit_item/habit_item';
 import HabitAdd from '../habit_add/habit_add';
 import { IProps } from '../../VC/habit/habit';
 
-const HabitList = ({ habits, addInpRef, addHabit, delHabit } : IProps) => {
+const HabitList = ({ habits, addInpRef, addHabit, delHabit, handleBox } : IProps) => {
     return (
         <div>
                 <HabitAdd
@@ -16,7 +16,8 @@ const HabitList = ({ habits, addInpRef, addHabit, delHabit } : IProps) => {
                         <HabitItem
                             key={key}
                             habit={habits[Number(key)]}
-                            delHabit={delHabit}/>
+                            delHabit={delHabit}
+                            handleBox={handleBox} />
                     )
                 })}
             </ul>

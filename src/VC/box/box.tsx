@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import BoxList from '../../VAC/box_list/box_list';
+import { IHandleBox } from '../habit/habit';
 import Timer from '../timer/timer';
 
 export interface IBox{
@@ -13,7 +14,7 @@ export interface IBoxes{
     [key: string]: IBox
 };
 
-const Box = () => {
+const Box = ({id,boxesJSON, handleBox}:{id:number, boxesJSON:IBoxes, handleBox: IHandleBox}) => {
     const [boxes, setBoxes] = useState<IBoxes>({});
     const [json, setJson] = useState<IBoxes>({ //임시 데이터 추후 DB
         "2022-04-24": {
@@ -56,9 +57,9 @@ const Box = () => {
     const setTodayBox: (time: number, start: string, end: string) => void = (time, startTime, end) => {
         if (time < 1000) return;
         const today: string = new Date().toISOString().split('T')[0];
-        setBoxes(boxes => ({
-            ...boxes,
-            [`${today}`]: {
+        setBoxes(boxes => {
+            const temp = { ...boxes };
+            const data = {
                 ...boxes[today],
                 habitTime: {
                     ...boxes[today].habitTime,
@@ -66,8 +67,11 @@ const Box = () => {
                 },
                 totalTime: time,
                 color: colorSelector(time),
-            },
-        }));
+            }
+            temp[`${today}`] = data;
+            handleBox(id, today, data);
+            return temp;
+        });
     };
     
     const colorSelector: (temp: number) => string = (temp) => {

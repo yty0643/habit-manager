@@ -1,13 +1,14 @@
 import React from 'react';
 import Box from '../../VC/box/box';
-import { IHabit, IDelHabit } from '../../VC/habit/habit';
+import { IHabit, IDelHabit, IHandleBox } from '../../VC/habit/habit';
 
 interface IProps{
     habit: IHabit,
     delHabit: IDelHabit,
+    handleBox: IHandleBox,
 }
 
-const HabitItem = ({ habit, delHabit }: IProps) => {
+const HabitItem = ({ habit, delHabit, handleBox }: IProps) => {
     return (
         <li>
             <p>{habit?.id}</p>
@@ -16,7 +17,7 @@ const HabitItem = ({ habit, delHabit }: IProps) => {
             <button onClick={() => {
                 delHabit(habit);
             }}>del</button>
-            <Box />
+            <Box id={habit.id} boxesJSON={habit.boxesJSON} handleBox={handleBox}/>
         </li>
     )
 }
