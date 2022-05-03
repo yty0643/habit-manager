@@ -6,6 +6,7 @@ const BoxPreview = ({ box }: { box: IBox }) => {
 
     return (
         <div className={styles.preview}>
+            <p>{Object.keys(box.habitTime).length}</p>
             <p>{box.date}</p>
             {Object.keys(box.habitTime).map(key => {
                 return (

@@ -4,7 +4,7 @@ import Timer from '../timer/timer';
 
 export interface IBox{
     date: string,
-    habitTime: {[key: number]: string},
+    habitTime: {[key: number]: string[]},
     totalTime: number,
     color: string,
 };
@@ -19,8 +19,8 @@ const Box = () => {
         "2022-04-24": {
             date: "2022-04-24",
             habitTime: {
-                1: "11:06:56",
-                2: "14:16:56",
+                0: ["11:06:56","11:07:10"],
+                1: ["14:16:56","14:20:00"],
             },
             totalTime: 3600000,
             color: "green",
@@ -28,8 +28,8 @@ const Box = () => {
         "2022-04-26": {
             date: "2022-04-26",
             habitTime: {
-                1: "14:06:56",
-                2: "14:16:56",
+                0: ["11:06:56","11:07:10"],
+                1: ["14:16:56","14:20:00"],
             },
             totalTime: 36000000,
             color: "black",
@@ -53,7 +53,8 @@ const Box = () => {
         setBoxes(temp);
     }, [json]);
 
-    const setTodayBox: (time: number, start: string) => void = (time, startTime) => {
+    const setTodayBox: (time: number, start: string, end: string) => void = (time, startTime, end) => {
+        if (time < 1000) return;
         const today: string = new Date().toISOString().split('T')[0];
         setBoxes(boxes => ({
             ...boxes,
@@ -61,7 +62,7 @@ const Box = () => {
                 ...boxes[today],
                 habitTime: {
                     ...boxes[today].habitTime,
-                    [`${Object.keys(boxes[today].habitTime).length}`]: startTime,
+                    [`${Object.keys(boxes[today].habitTime).length}`]: [startTime, end],
                 },
                 totalTime: time,
                 color: colorSelector(time),

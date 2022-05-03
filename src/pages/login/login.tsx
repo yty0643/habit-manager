@@ -1,9 +1,14 @@
 import React from 'react';
+import Auth from '../../service/auth';
 
-const Login = () => {
+const Login = ({auth}:{auth: Auth}) => {
     
+    const login = () => {
+        auth.signIn();
+    }
+
     return (
-        <h1>login page</h1>
+        <button onClick={login}>check</button>
     )
 }
 
