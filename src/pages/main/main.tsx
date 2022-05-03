@@ -4,7 +4,7 @@ import Auth from '../../service/auth';
 import Database from '../../service/database';
 import Habit from '../../VC/habit/habit';
 
-interface IUser{
+export interface IUser{
     id: string,
     name: string
 }
@@ -40,7 +40,7 @@ const Main = ({ auth, db }: { auth: Auth, db: Database }) => {
         <div>
             <p>{user?.id}</p>
             <button onClick={signOut}>signOut</button>
-            <Habit />
+            {user && <Habit db={db} user={user} />}
         </div>
     )
 };

@@ -1,4 +1,6 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { IUser } from '../../pages/main/main';
+import Database from '../../service/database';
 import HabitList from '../../VAC/habit_list/habit_list';
 import { IBox, IBoxes } from '../box/box';
 
@@ -10,7 +12,7 @@ export interface IHabit{
 };
 
 export interface IHabits{
-    [key: number]:IHabit
+    [key: number]: IHabit
 };
 
 export interface IAddHabit{
@@ -33,7 +35,26 @@ export interface IProps{
     handleBox: IHandleBox,
 };
 
-const Habit = () => {
+// "2022-04-24": {
+//     date: "2022-04-24",
+//     habitTime: {
+//         0: ["11:06:56", "11:07:10"],
+//         1: ["14:16:56", "14:20:00"],
+//     },
+//     totalTime: 3600000,
+//     color: "green",
+// },
+// "2022-04-26": {
+//     date: "2022-04-26",
+//     habitTime: {
+//         0: ["11:06:56", "11:07:10"],
+//         1: ["14:16:56", "14:20:00"],
+//     },
+//     totalTime: 36000000,
+//     color: "black",
+// },
+
+const Habit = ({ db, user }: { db: Database, user: IUser }) => {
     const [habits, setHabits] = useState<IHabits>({});
     const addInpRef = useRef<HTMLInputElement>(null);
     const props: IProps = {
@@ -66,11 +87,14 @@ const Habit = () => {
                 const todayTemp = { ...temp[id].boxesJSON }
                 todayTemp[today] = data;
                 temp[id].boxesJSON = todayTemp;
-                //이부분에서 db에 write하면 되겠다.
                 return temp;
             })
         }
     };
+
+    useEffect(() => {
+        db.write(user.id, habits);
+    }, [habits])
     
     return <HabitList {...props} />
 };

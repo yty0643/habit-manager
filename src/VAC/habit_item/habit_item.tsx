@@ -6,7 +6,7 @@ interface IProps{
     habit: IHabit,
     delHabit: IDelHabit,
     handleBox: IHandleBox,
-}
+};
 
 const HabitItem = ({ habit, delHabit, handleBox }: IProps) => {
     return (
@@ -17,9 +17,9 @@ const HabitItem = ({ habit, delHabit, handleBox }: IProps) => {
             <button onClick={() => {
                 delHabit(habit);
             }}>del</button>
-            <Box id={habit.id} boxesJSON={habit.boxesJSON} handleBox={handleBox}/>
+            <Box id={habit.id} boxesJSON={habit.boxesJSON} handleBox={handleBox} />
         </li>
-    )
-}
+    );
+};
 
 export default React.memo(HabitItem);

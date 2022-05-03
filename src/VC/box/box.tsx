@@ -14,29 +14,9 @@ export interface IBoxes{
     [key: string]: IBox
 };
 
-const Box = ({id,boxesJSON, handleBox}:{id:number, boxesJSON:IBoxes, handleBox: IHandleBox}) => {
+const Box = ({ id, boxesJSON, handleBox }: { id: number, boxesJSON: IBoxes, handleBox: IHandleBox }) => {
     const [boxes, setBoxes] = useState<IBoxes>({});
-    const [json, setJson] = useState<IBoxes>({ //임시 데이터 추후 DB
-        "2022-04-24": {
-            date: "2022-04-24",
-            habitTime: {
-                0: ["11:06:56","11:07:10"],
-                1: ["14:16:56","14:20:00"],
-            },
-            totalTime: 3600000,
-            color: "green",
-        },
-        "2022-04-26": {
-            date: "2022-04-26",
-            habitTime: {
-                0: ["11:06:56","11:07:10"],
-                1: ["14:16:56","14:20:00"],
-            },
-            totalTime: 36000000,
-            color: "black",
-        },
-    });
-
+    
     const initBoxes: () => void = useCallback(() => {
         const temp: IBoxes = {};
         const day = new Date().getDay() + 1;
@@ -46,13 +26,13 @@ const Box = ({id,boxesJSON, handleBox}:{id:number, boxesJSON:IBoxes, handleBox: 
             const key = date.toISOString().split('T')[0];
             temp[key] = {
                 date: key,
-                habitTime: json[key]?.habitTime || {},
-                totalTime: json[key]?.totalTime || 0,
-                color: json[key]?.color || "grey", //추후 색상 수정(base color)
+                habitTime: boxesJSON[key]?.habitTime || {},
+                totalTime: boxesJSON[key]?.totalTime || 0,
+                color: boxesJSON[key]?.color || "grey", //추후 색상 수정(base color)
             };
         };
         setBoxes(temp);
-    }, [json]);
+    }, [boxesJSON]);
 
     const setTodayBox: (time: number, start: string, end: string) => void = (time, startTime, end) => {
         if (time < 1000) return;
@@ -86,7 +66,7 @@ const Box = ({id,boxesJSON, handleBox}:{id:number, boxesJSON:IBoxes, handleBox: 
 
     useEffect(() => {
         initBoxes();
-    }, [json]);
+    }, [boxesJSON]);
     
     return (
         <div>
