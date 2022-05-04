@@ -7,7 +7,7 @@ class Database{
         const updates: { [key: string]: object } = {};
         updates[`user/${uid}/`] = postData;      
         return update(ref(db), updates);
-    }
-}
+    };
+};
 
 export default Database;

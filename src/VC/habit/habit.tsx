@@ -35,25 +35,6 @@ export interface IProps{
     handleBox: IHandleBox,
 };
 
-// "2022-04-24": {
-//     date: "2022-04-24",
-//     habitTime: {
-//         0: ["11:06:56", "11:07:10"],
-//         1: ["14:16:56", "14:20:00"],
-//     },
-//     totalTime: 3600000,
-//     color: "green",
-// },
-// "2022-04-26": {
-//     date: "2022-04-26",
-//     habitTime: {
-//         0: ["11:06:56", "11:07:10"],
-//         1: ["14:16:56", "14:20:00"],
-//     },
-//     totalTime: 36000000,
-//     color: "black",
-// },
-
 const Habit = ({ db, user }: { db: Database, user: IUser }) => {
     const [habits, setHabits] = useState<IHabits>({});
     const addInpRef = useRef<HTMLInputElement>(null);
@@ -88,13 +69,13 @@ const Habit = ({ db, user }: { db: Database, user: IUser }) => {
                 todayTemp[today] = data;
                 temp[id].boxesJSON = todayTemp;
                 return temp;
-            })
-        }
+            });
+        },
     };
 
     useEffect(() => {
         db.write(user.id, habits);
-    }, [habits])
+    }, [habits]);
     
     return <HabitList {...props} />
 };

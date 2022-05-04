@@ -4,12 +4,12 @@ import { signInWithPopup, GithubAuthProvider, onAuthStateChanged, signOut } from
 class Auth{
   signIn() {
     const provider = new GithubAuthProvider();
-    return signInWithPopup(auth, provider)
-  }
+    return signInWithPopup(auth, provider);
+  };
 
   signOut() {
-    return signOut(auth)
-  }
+    return signOut(auth);
+  };
 
   getUser() {
     return new Promise((resolve, reject) => {
@@ -21,7 +21,7 @@ class Auth{
         }
       })
     })
-  }
+  };
 };
 
 export default Auth;

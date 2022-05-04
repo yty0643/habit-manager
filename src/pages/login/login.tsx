@@ -1,11 +1,15 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Auth from '../../service/auth';
+import VACLogin from '../../VAC/VAC_login/VAC_login';
 
+export interface ISignIn{
+    (): void;
+};
 
 const Login = ({auth}:{auth: Auth}) => {
     const navigate = useNavigate();
-    const signIn = () => {
+    const signIn:ISignIn = () => {
         auth
             .signIn()
             .then((res) => {
@@ -18,7 +22,7 @@ const Login = ({auth}:{auth: Auth}) => {
 
     return (
         <div>
-            <button onClick={signIn}>signIn</button>
+            <VACLogin signIn={signIn}/>
         </div>
     )
 }

@@ -20,7 +20,7 @@ const Main = ({ auth, db }: { auth: Auth, db: Database }) => {
             }).catch((error) => {
                 console.log(error);
             });
-    }
+    };
 
     useEffect(() => {
         auth
@@ -33,6 +33,7 @@ const Main = ({ auth, db }: { auth: Auth, db: Database }) => {
             })
             .catch((error: any) => {
                 console.log(error);
+                navigate('/');
             });
     }, []);
 
@@ -42,7 +43,7 @@ const Main = ({ auth, db }: { auth: Auth, db: Database }) => {
             <button onClick={signOut}>signOut</button>
             {user && <Habit db={db} user={user} />}
         </div>
-    )
+    );
 };
 
 export default Main;
