@@ -4,6 +4,7 @@ import Main from './pages/main/main';
 import Auth from './service/auth';
 import Database from './service/database';
 import styles from './app.module.css';
+
 function App({ auth, db }:{auth: Auth, db: Database}) {
   return (
     <div className={styles.app}>

@@ -4,14 +4,14 @@ import Auth from '../../service/auth';
 import VACLogin from '../../VAC/VAC_login/VAC_login';
 
 export interface ISignIn{
-    (): void;
+    (provider: string): void;
 };
 
 const Login = ({auth}:{auth: Auth}) => {
     const navigate = useNavigate();
-    const signIn:ISignIn = () => {
+    const signIn:ISignIn = (provider) => {
         auth
-            .signIn()
+            .signIn(provider)
             .then((res) => {
                 navigate('/main');
             })

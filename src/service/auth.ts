@@ -1,9 +1,20 @@
 import { auth } from './firebase';
-import { signInWithPopup, GithubAuthProvider, onAuthStateChanged, signOut } from "firebase/auth";
+import { signInWithPopup, GithubAuthProvider, GoogleAuthProvider, FacebookAuthProvider, onAuthStateChanged, signOut } from "firebase/auth";
 
 class Auth{
-  signIn() {
-    const provider = new GithubAuthProvider();
+  signIn(providerToS: string) {
+    let provider;
+    switch(providerToS){
+      case "GitHub":
+        provider = new GithubAuthProvider();
+        break;
+      case "Google":
+        provider = new GoogleAuthProvider();
+        break;
+      default :
+        provider = new FacebookAuthProvider();
+        break;
+    }
     return signInWithPopup(auth, provider);
   };
 

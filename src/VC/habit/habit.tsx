@@ -74,7 +74,7 @@ const Habit = ({ db, user }: { db: Database, user: IUser }) => {
     };
 
     useEffect(() => {
-        db.write(user.id, habits);
+        db.write(user.email, habits);
     }, [habits]);
     
     return <HabitList {...props} />

@@ -5,7 +5,7 @@ import Database from '../../service/database';
 import Habit from '../../VC/habit/habit';
 
 export interface IUser{
-    id: string,
+    email: string,
     name: string
 }
 
@@ -26,8 +26,9 @@ const Main = ({ auth, db }: { auth: Auth, db: Database }) => {
         auth
             .getUser()
             .then((res: any) => {
+                console.log(res);
                 setUser({
-                    id: res.reloadUserInfo.screenName,
+                    email: res.reloadUserInfo.email.split('.')[0],
                     name: res.reloadUserInfo.displayName,
                 });
             })
@@ -39,7 +40,7 @@ const Main = ({ auth, db }: { auth: Auth, db: Database }) => {
 
     return (
         <div>
-            <p>{user?.id}</p>
+            <p>{user?.email}</p>
             <button onClick={signOut}>signOut</button>
             {user && <Habit db={db} user={user} />}
         </div>

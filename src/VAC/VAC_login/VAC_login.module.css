@@ -39,11 +39,88 @@
     flex: 1 1 62%;
 }
 
+.l{
+    padding-bottom: 20px;
+}
 
+.title{
+    margin-bottom: 24px;
+}
 
-.githubBtn{
-    background-color: rgb(60, 60, 60);
-    color:white;
+.form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.input{
+    width: 80%;
+    border: none;
+    border-bottom: 1px solid rgb(210, 210, 210);
+    margin-bottom: 1px;
+}
+
+.horizontal{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 25px 0 15px 0;
+    width: 80%;
+    height: 0.5px;
+    background-color: rgb(210, 210, 210);
+}
+.description{
+    padding : 0 3px;
+    color:rgb(120, 120, 120);
+    background-color: white;
+}
+.signInBtn,
+.githubBtn,
+.googleBtn{
+    margin-bottom: 2px;
     padding: 7px 11px;
+    width: 80%;
     border-radius: 3px;
+    transition: all ease-in 300ms;
+}
+.signInBtn{
+    margin-top: 5px;
+    border: 1px solid rgb(101, 194, 89);
+    color:white;
+    background-color: rgb(101, 194, 89);
+}
+.githubBtn{
+    border: 1px solid rgb(60, 60, 60);
+    color:white;
+    background-color: rgb(60, 60, 60);
+}
+.googleBtn{
+    border: 1px solid rgb(71, 101, 220);
+    color: white;
+    background-color: rgb(71, 101, 220);
+}
+.signInBtn:hover{
+    color:rgb(101, 194, 89);
+    background-color: white;
+}
+.githubBtn:hover{
+    color: rgb(60, 60, 60);
+    background-color: white;;
+}
+.googleBtn:hover{
+    color: rgb(71, 101, 220);
+    background-color: rgb(255, 255, 255);
+}
+
+.btnTitle{
+    display: inline;
+    padding-right: 5px;
+    transition: all ease-in 300ms;
+    opacity: 0;
+}
+
+.btnTitle:hover{
+    opacity: 1;
 }

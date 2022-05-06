@@ -47,7 +47,7 @@ const Box = ({ id, boxesJSON, handleBox }: { id: number, boxesJSON: IBoxes, hand
                 },
                 totalTime: time,
                 color: colorSelector(time),
-            }
+            };
             temp[`${today}`] = data;
             handleBox(id, today, data);
             return temp;
