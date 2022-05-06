@@ -7,7 +7,11 @@ export interface ISignIn{
     (provider: string): void;
 };
 
-const Login = ({auth}:{auth: Auth}) => {
+export interface ISignUp{
+    (): void;
+}
+
+const SignIn = ({auth}:{auth: Auth}) => {
     const navigate = useNavigate();
     const signIn:ISignIn = (provider) => {
         auth
@@ -20,11 +24,16 @@ const Login = ({auth}:{auth: Auth}) => {
             })
     }
 
+    const signUp:ISignUp = () => {
+        navigate('/signup');
+    }
+
     return (
         <div>
-            <VACLogin signIn={signIn}/>
+            <VACLogin signIn={signIn} signUp={signUp}/>
         </div>
     )
 }
 
-export default Login;
+
+export default SignIn;

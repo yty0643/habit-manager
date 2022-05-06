@@ -43,8 +43,8 @@
     padding-bottom: 20px;
 }
 
-.title{
-    margin-bottom: 24px;
+.LTitle{
+    margin-bottom: 16px;
 }
 
 .form{
@@ -60,6 +60,7 @@
     border: none;
     border-bottom: 1px solid rgb(210, 210, 210);
     margin-bottom: 1px;
+    padding: 3px 3px;
 }
 
 .horizontal{
@@ -76,51 +77,80 @@
     color:rgb(120, 120, 120);
     background-color: white;
 }
-.signInBtn,
-.githubBtn,
-.googleBtn{
-    margin-bottom: 2px;
-    padding: 7px 11px;
-    width: 80%;
-    border-radius: 3px;
-    transition: all ease-in 300ms;
-}
-.signInBtn{
+.signUp{
     margin-top: 5px;
-    border: 1px solid rgb(101, 194, 89);
+    color: rgb(96, 170, 207);
+}
+.btn{
+    z-index: 0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    height: 1.8rem;
+    border-radius: 3px;
+    margin-top: 3px;
     color:white;
     background-color: rgb(101, 194, 89);
 }
-.githubBtn{
-    border: 1px solid rgb(60, 60, 60);
-    color:white;
+.btnTitle{
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    top:0;
+    right:15%;
+    height: 100%;
+    transition: all ease-in 300ms;
+}
+.btnIcon{
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    margin-left: 40%;
+    padding-right: 40%;
+    height: 100%;
+}
+.btnIcon.active{
+    margin-left: 55%;
+    padding-right: 35%;
+}
+.btnTitle.active{
+    right:45%;
+}
+
+.signIn{
+    background-color: rgb(101, 194, 89);
+}
+.signIn .signInIcon{
+    background-color:inherit;
+}
+.github{
     background-color: rgb(60, 60, 60);
 }
-.googleBtn{
-    border: 1px solid rgb(71, 101, 220);
-    color: white;
+.github .githubIcon{
+    background-color:inherit;
+}
+.google{
     background-color: rgb(71, 101, 220);
 }
-.signInBtn:hover{
-    color:rgb(101, 194, 89);
-    background-color: white;
-}
-.githubBtn:hover{
-    color: rgb(60, 60, 60);
-    background-color: white;;
-}
-.googleBtn:hover{
-    color: rgb(71, 101, 220);
-    background-color: rgb(255, 255, 255);
+.google .googleIcon{
+    background-color:inherit;
 }
 
-.btnTitle{
-    display: inline;
-    padding-right: 5px;
-    transition: all ease-in 300ms;
-    opacity: 0;
+.btn:hover{
+    color:rgb(99, 99, 99);
+    background-color: aliceblue;
 }
 
-.btnTitle:hover{
-    opacity: 1;
+
+.RTitle{
+    margin-bottom: 20px;
+}
+
+.visit,
+.contact{
+    font-size: 12px;
+    margin-bottom: 5px;
 }
