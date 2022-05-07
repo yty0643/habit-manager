@@ -1,49 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
 import Auth from '../../service/auth';
 import Database from '../../service/database';
 import Habit from '../../VC/habit/habit';
 
-export interface IUser{
-    email: string,
-    name: string
-}
-
 const Main = ({ auth, db }: { auth: Auth, db: Database }) => {
-    const navigate = useNavigate();
-    const [user, setUser] = useState<IUser>();
-    const signOut = () => {
-        auth
-            .signOut()
-            .then(() => {
-                navigate('/');
-            }).catch((error) => {
-                console.log(error);
-            });
-    };
-
-    useEffect(() => {
-        auth
-            .getUser()
-            .then((res: any) => {
-                console.log(res);
-                setUser({
-                    email: res.reloadUserInfo.email.split('.')[0],
-                    name: res.reloadUserInfo.displayName,
-                });
-            })
-            .catch((error: any) => {
-                console.log(error);
-                navigate('/');
-            });
-    }, []);
+    
 
     return (
-        <div>
-            <p>{user?.email}</p>
-            <button onClick={signOut}>signOut</button>
-            {user && <Habit db={db} user={user} />}
-        </div>
+        <Habit auth={auth} db={db} />
     );
 };
 

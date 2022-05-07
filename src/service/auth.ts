@@ -5,7 +5,7 @@ class Auth{
   signIn(providerToS: string) {
     let provider;
     switch(providerToS){
-      case "GitHub":
+      case "Github":
         provider = new GithubAuthProvider();
         break;
       case "Google":

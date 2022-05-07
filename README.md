@@ -48,4 +48,123 @@ export interface IProps {
 const HabitList = ({ habits, addHabit, delHabit } : IProps) => { ... };
 ```
 
+## 컴포넌트 세분화
+
+프로젝트 개발중에 딱히 기록할만한게 없어서 작성을 미루다
+login관련 컴포넌트가 너무 복잡하게 작성되었다고 판단되어서 컴포넌트를 세분화 하고 이 과정을 기록하고자 한다.
+
+우선 개선 전 컴포넌트 코드이다.
+
+```javascript
+import React, { useState } from "react";
+import { ISignIn, ISignUp } from "../../VC/sign_in/sign_in";
+import styles from "./VAC_login.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRightToBracket } from "@fortawesome/free-solid-svg-icons";
+import { faGithub, faGoogle } from "@fortawesome/free-brands-svg-icons";
+
+const VACLogin = ({ signIn, signUp }: { signIn: ISignIn, signUp: ISignUp }) => {
+  const [active, setActive] = useState < Boolean > false;
+  const [active2, setActive2] = useState < boolean > false;
+
+  return (
+    <div className={styles.login}>
+      <div className={styles.box}>
+        <div
+          className={styles.l}
+          onMouseEnter={() => {
+            setActive(true);
+          }}
+          onMouseLeave={() => {
+            setActive(false);
+          }}
+        >
+          <p className={styles.LTitle}>Sign In</p>
+          <form className={styles.form} action="">
+            <input className={styles.input} type="text" placeholder="email" />
+            <input
+              className={styles.input}
+              type="password"
+              placeholder="password"
+            />
+            <button className={`${styles.btn} ${styles.signIn}`}>
+              <div className={`${styles.btnTitle} ${active && styles.active}`}>
+                Sign in
+              </div>
+              <div
+                className={`${styles.btnIcon} ${active && styles.active} ${
+                  styles.signInIcon
+                }`}
+              >
+                <FontAwesomeIcon icon={faArrowRightToBracket} />
+              </div>
+            </button>
+          </form>
+          <button className={styles.signUp} onClick={signUp}>
+            {active ? "Sign up and get started!" : "Don't have an account?"}
+          </button>
+          <div className={styles.horizontal}>
+            <p className={styles.description}>with</p>
+          </div>
+          <button
+            className={`${styles.btn} ${styles.github}`}
+            onClick={() => {
+              signIn("GitHub");
+            }}
+          >
+            <div className={`${styles.btnTitle} ${active && styles.active}`}>
+              GitHub
+            </div>
+            <div
+              className={`${styles.btnIcon} ${active && styles.active} ${
+                styles.githubIcon
+              }`}
+            >
+              <FontAwesomeIcon icon={faGithub} />
+            </div>
+          </button>
+          <button
+            className={`${styles.btn} ${styles.google}`}
+            onClick={() => {
+              signIn("Google");
+            }}
+          >
+            <div className={`${styles.btnTitle} ${active && styles.active}`}>
+              Google
+            </div>
+            <div
+              className={`${styles.btnIcon} ${active && styles.active} ${
+                styles.googleIcon
+              }`}
+            >
+              <FontAwesomeIcon icon={faGoogle} />
+            </div>
+          </button>
+        </div>
+        <div className={styles.vertical}></div>
+        <div
+          className={styles.r}
+          onMouseEnter={() => {
+            setActive2(true);
+          }}
+          onMouseLeave={() => {
+            setActive2(false);
+          }}
+        >
+          <p className={styles.RTitle}>Habit manager</p>
+          <a href="https://github.com/yty0643" target="_blank">
+            <p className={styles.visit}>Visit GitHub</p>
+          </a>
+          <p className={`${styles.contact} ${active2 && styles.active}`}>
+            {active2 ? `yty0643@naver.com` : `Contact me`}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default VACLogin;
+```
+
 > 필자는 `IProps`를 상위 컴포넌트에서 선언하고 하위 컴포넌트에서 참조하여 사용했다.

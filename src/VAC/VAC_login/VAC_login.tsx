@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { ISignIn, ISignUp } from '../../VC/sign_in/sign_in';
+import { ISignIn } from '../../VC/sign_in_btn/sign_in_btn';
 import styles from './VAC_login.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRightToBracket } from '@fortawesome/free-solid-svg-icons';
 import { faGithub,faGoogle } from '@fortawesome/free-brands-svg-icons';
 
-const VACLogin = ({ signIn, signUp }: { signIn: ISignIn, signUp: ISignUp}) => {
+const VACLogin = ({ signIn }: { signIn: ISignIn}) => {
 
     const [active, setActive] = useState<Boolean>(false);
     const [active2, setActive2] = useState<boolean>(false);
@@ -33,12 +33,12 @@ const VACLogin = ({ signIn, signUp }: { signIn: ISignIn, signUp: ISignUp}) => {
                             </div>
                         </button>
                     </form>
-                    <button className={styles.signUp} onClick={signUp}>
+                    <button className={styles.signUp}>
                         {active? "Sign up and get started!":"Don't have an account?"}
                     </button>
                     <div className={styles.horizontal}><p className={styles.description}>with</p></div>
                     <button className={`${styles.btn} ${styles.github}`} onClick={() => {
-                        signIn('GitHub');
+                        signIn();
                     }}>
                         <div className={`${styles.btnTitle} ${active && styles.active}`}>
                             GitHub
@@ -48,7 +48,7 @@ const VACLogin = ({ signIn, signUp }: { signIn: ISignIn, signUp: ISignUp}) => {
                         </div>
                     </button>
                     <button className={`${styles.btn} ${styles.google}`} onClick={() => {
-                        signIn('Google');
+                        signIn();
                     }}>
                         <div className={`${styles.btnTitle} ${active && styles.active}`}>
                             Google

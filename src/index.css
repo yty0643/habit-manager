@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;300;500;700&display=swap');
+
 *{
   box-sizing: border-box;
 }
@@ -9,6 +11,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-family: 'Roboto Mono', monospace;
+  
 }
 
 code {
@@ -40,3 +44,4 @@ button{
   padding: 0;
   margin: 0;
 }
+

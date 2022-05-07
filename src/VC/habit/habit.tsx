@@ -1,8 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { IUser } from '../../pages/main/main';
+import { useNavigate } from 'react-router-dom';
+import { IBox, IBoxes } from '../box/box';
+import Auth from '../../service/auth';
 import Database from '../../service/database';
 import HabitList from '../../VAC/habit_list/habit_list';
-import { IBox, IBoxes } from '../box/box';
+
+export interface IUser{
+    email: string,
+    name: string
+}
 
 export interface IHabit{
     id: number,
@@ -35,9 +41,12 @@ export interface IProps{
     handleBox: IHandleBox,
 };
 
-const Habit = ({ db, user }: { db: Database, user: IUser }) => {
+const Habit = ({ auth, db }: { auth: Auth, db: Database }) => {
+    const navigate = useNavigate();
+    const [user, setUser] = useState<IUser>();
     const [habits, setHabits] = useState<IHabits>({});
     const addInpRef = useRef<HTMLInputElement>(null);
+
     const props: IProps = {
         habits,
         addInpRef,
@@ -73,11 +82,44 @@ const Habit = ({ db, user }: { db: Database, user: IUser }) => {
         },
     };
 
+    const signOut = () => {
+        auth
+            .signOut()
+            .then(() => {
+                navigate('/');
+            }).catch((error) => {
+                console.log(error);
+            });
+    };
+
     useEffect(() => {
+        auth
+            .getUser()
+            .then((res: any) => {
+                console.log(res);
+                setUser({
+                    email: res.reloadUserInfo.email.split('.')[0],
+                    name: res.reloadUserInfo.displayName,
+                });
+            })
+            .catch((error: any) => {
+                console.log(error);
+                navigate('/');
+            });
+    }, []);
+
+    useEffect(() => {
+        if (!user) return;
         db.write(user.email, habits);
     }, [habits]);
     
-    return <HabitList {...props} />
+    return (
+        <div>
+            <p>{user?.email}</p>
+            <button onClick={signOut}>signOut</button>
+            <HabitList {...props} />
+        </div>
+    )
 };
 
 export default Habit;
