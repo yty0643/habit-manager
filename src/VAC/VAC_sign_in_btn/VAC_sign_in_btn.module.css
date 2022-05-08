@@ -1,0 +1,19 @@
+.btn{
+    border-radius: 3px;
+    width: 85%;
+    height: 25px;
+    margin-bottom: 3px;
+    color:white;
+}
+.btn:hover{
+    background-color: antiquewhite !important;
+    color: rgb(61, 61, 61)
+}
+
+.test{
+    width: 100px;
+    height:100px;
+    background-color: rgb(89, 120, 255);
+}
+
+/* rgb(51, 86, 241); */

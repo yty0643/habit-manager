@@ -27,13 +27,11 @@ const SignInBtn = ({ auth, item, active }: { auth: Auth, item: IItem, active: bo
             .catch((error) => {
                 console.log(error);
             })
-    }
+    };
 
     return (
-        <div>
-            <VACSignInBtn item={item} active={active} signIn={signIn} />
-        </div>
-    )
+        <VACSignInBtn item={item} active={active} signIn={signIn} />
+    );
 };
 
 export default SignInBtn;

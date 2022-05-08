@@ -1,0 +1,15 @@
+.horizontal{
+    width: 85%;
+    height: 0.5px;
+    background-color: rgb(210, 210, 210);
+    margin: 30px 0 20px 0;
+    text-align: center;
+    line-height: 0px;
+}
+.separator{
+    display: inline;
+    padding: 0 4px;
+    font-weight: 500;
+    color: rgb(94, 94, 94);
+    background-color: white;
+}

@@ -48,6 +48,8 @@ export interface IProps {
 const HabitList = ({ habits, addHabit, delHabit } : IProps) => { ... };
 ```
 
+> 필자는 `IProps`를 상위 컴포넌트에서 선언하고 하위 컴포넌트에서 참조하여 사용했다.
+
 ## 컴포넌트 세분화
 
 프로젝트 개발중에 딱히 기록할만한게 없어서 작성을 미루다 login관련 컴포넌트가 너무 복잡하게 작성되었다고 판단되어서
@@ -55,7 +57,7 @@ const HabitList = ({ habits, addHabit, delHabit } : IProps) => { ... };
 
 아직 개발단계라 VAC 이지만 useState를 사용했다. (추후 state를 따로 분리할 예정이었음)
 
-우선 개선 전 컴포넌트 코드이다.
+개선 전
 
 ```javascript
 import React, { useState } from "react";
@@ -169,4 +171,79 @@ const VACLogin = ({ signIn, signUp }: { signIn: ISignIn, signUp: ISignUp }) => {
 export default VACLogin;
 ```
 
-> 필자는 `IProps`를 상위 컴포넌트에서 선언하고 하위 컴포넌트에서 참조하여 사용했다.
+개선 후
+
+```javascript
+import React, { useState } from "react";
+import Auth from "../../service/auth";
+import SignInBtn from "../../VC/sign_in_btn/sign_in_btn";
+import SignInForm from "../../VC/sign_in_form/sign_in_form";
+import styles from "./login.module.css";
+import { faGithub, faGoogle } from "@fortawesome/free-brands-svg-icons";
+import Info from "../../VC/info/info";
+import MiniBox from "../../VAC/mini_box/mini_box";
+import LinkBtn from "../../VAC/link_btn/link_btn";
+import Separator from "../../VAC/separator/separator";
+
+const Login = ({ auth }: { auth: Auth }) => {
+  const [isFocus, setIsFocus] = useState < number > 0;
+  return (
+    <div className={styles.login}>
+      <div
+        className={styles.l}
+        onMouseEnter={() => {
+          setIsFocus(1);
+        }}
+        onMouseLeave={() => {
+          setIsFocus(0);
+        }}
+      >
+        <SignInForm auth={auth} active={isFocus == 1 ? true : false} />
+        <Separator active={isFocus == 1 ? true : false} />
+        <SignInBtn
+          auth={auth}
+          item={{
+            provider: "Github",
+            bgColor: "rgb(50, 50, 50)",
+            icon: faGithub,
+          }}
+          active={isFocus == 1 ? true : false}
+        />
+        <SignInBtn
+          auth={auth}
+          item={{
+            provider: "Google",
+            bgColor: "rgb(89, 120, 255)",
+            icon: faGoogle,
+          }}
+          active={isFocus == 1 ? true : false}
+        />
+      </div>
+      <div className={styles.vertical}></div>
+      <div
+        className={styles.r}
+        onMouseEnter={() => {
+          setIsFocus(2);
+        }}
+        onMouseLeave={() => {
+          setIsFocus(0);
+        }}
+      >
+        <Info active={isFocus == 2 ? true : false} />
+        <MiniBox active={isFocus == 2 ? true : false} />
+        <LinkBtn
+          active={isFocus == 2 ? true : false}
+          item={{ href: "https://github.com/yty0643", icon: faGithub }}
+        />
+      </div>
+    </div>
+  );
+};
+
+export default Login;
+```
+
+> 개선 전 `VACLogin` 하나의 컴포넌트를 VAC 디자인 패턴을 적용하여 재사용 가능한 여러 컴포넌트로 분리하여 개발했다.
+> 개선 후 `Login` Page component가 간단하고 직관적으로 설계된것을 확인할 수 있다.
+> VC: `SignInForm`, `SignInBtn`, `Info`, `LinkBtn`
+> VAC: `VACSignInForm`, `VACSignInBtn`, `VACInfo`, `MiniBox`, `LinkBtn`, `Separator`, `Logo`

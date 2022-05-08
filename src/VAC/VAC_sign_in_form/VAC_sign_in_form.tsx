@@ -4,16 +4,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRightToBracket } from '@fortawesome/free-solid-svg-icons';
 import { ISignIn } from '../../VC/sign_in_form/sign_in_form';
 
-const VACSignInForm = ({ signIn, active }: { signIn: ISignIn, active: boolean}) => {
+const VACSignInForm = ({ signIn, signUp, active }: { signIn: ISignIn, signUp: ISignIn, active: boolean}) => {
     
     return (
         <form className={styles.signInForm}>
             <input className={styles.id} type="text" placeholder={active ? "email" : ""} />
             <input className={styles.pass} type="password" placeholder={active ? "password" : ""}/>
-            <button onClick={signIn}>
-                {active && "Sign in"}
+            <button className={styles.signBtn} onClick={signIn}>
+                {active && "Sign in "}
                 <FontAwesomeIcon icon={faArrowRightToBracket} />
             </button>
+            <p className={styles.signUp} onClick={signUp}>
+                {active ? "Sign up and get started!" : "Don't have an account?"}
+            </p>
         </form>
     );
 };

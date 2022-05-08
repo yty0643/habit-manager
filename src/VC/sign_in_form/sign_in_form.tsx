@@ -11,14 +11,20 @@ const SignInForm = ({ auth, active }: { auth: Auth, active: boolean }) => {
     const navigate = useNavigate();
     
     const signIn: ISignIn = (event) => {
-        // navigate("/main");
         event.preventDefault();
         console.log("SIGN-IN!");
+        // navigate("/main");
+    };
+
+    const signUp: ISignIn = (event) => {
+        event.preventDefault();
+        console.log("SIGN-UP!");
+        // navigate("/main");
     }
 
     return (
-        <VACSignInForm signIn={signIn} active={active} />
-    )
+        <VACSignInForm signIn={signIn} signUp={signUp} active={active} />
+    );
 };
 
 export default SignInForm;
