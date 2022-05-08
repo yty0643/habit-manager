@@ -28,6 +28,11 @@
 }
 
 .signUp{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 85%;
+    height: 16px;
     font-size: 12px;
     font-weight: 300;
     text-align: center;

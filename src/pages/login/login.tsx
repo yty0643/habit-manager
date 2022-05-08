@@ -5,9 +5,9 @@ import SignInForm from '../../VC/sign_in_form/sign_in_form';
 import styles from './login.module.css';
 import { faGithub, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import Info from '../../VC/info/info';
-import MiniBox from '../../VAC/mini_box/mini_box';
 import LinkBtn from '../../VAC/link_btn/link_btn';
 import Separator from '../../VAC/separator/separator';
+import MiniBox from '../../VC/mini_box/mini_box';
 
 
 const Login = ({ auth }: { auth: Auth }) => {
