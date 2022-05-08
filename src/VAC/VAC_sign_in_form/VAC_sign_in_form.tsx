@@ -14,7 +14,7 @@ const VACSignInForm = ({ signIn, signUp, active }: { signIn: ISignIn, signUp: IS
                 {active && "Sign in "}
                 <FontAwesomeIcon icon={faArrowRightToBracket} />
             </button>
-            <p className={styles.signUp} onClick={signUp}>
+            <p className={`${styles.signUp} ${active && styles.active}`} onClick={signUp}>
                 {active ? "Sign up and get started!" : "Don't have an account?"}
             </p>
         </form>

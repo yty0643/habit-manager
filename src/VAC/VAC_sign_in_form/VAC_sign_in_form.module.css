@@ -32,10 +32,12 @@
     font-weight: 300;
     text-align: center;
     cursor: pointer;
-    color:rgb(106, 106, 237);
+    color:rgb(210, 210, 210);
     border-bottom: 1px dotted white;
 }
-
+.signUp.active{
+    color:rgb(106, 106, 237);
+}
 .signUp:hover{
     border-bottom: 1px dotted rgb(74, 74, 240);
 }
