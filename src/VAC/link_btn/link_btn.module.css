@@ -1,0 +1,18 @@
+.linkBtn{
+    font-size: 30px;
+    opacity: 0;
+    color: rgb(50, 50, 50);
+    transition: all ease-in 100ms;
+}
+.linkBtn:hover{
+    color: rgb(79, 111, 149);
+    transform: scale(1.1);
+}
+.linkBtn.active{
+    opacity: 1;
+}
+
+.title{
+    display: inline;
+    font-size: 10px;
+}

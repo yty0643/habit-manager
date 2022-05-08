@@ -3,10 +3,10 @@ import Auth from '../../service/auth';
 import SignInBtn from '../../VC/sign_in_btn/sign_in_btn';
 import SignInForm from '../../VC/sign_in_form/sign_in_form';
 import styles from './login.module.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRightToBracket } from '@fortawesome/free-solid-svg-icons';
 import { faGithub, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import Info from '../../VC/info/info';
+import MiniBox from '../../VAC/mini_box/mini_box';
+import LinkBtn from '../../VAC/link_btn/link_btn';
 
 
 const Login = ({ auth }: { auth: Auth }) => {
@@ -22,6 +22,8 @@ const Login = ({ auth }: { auth: Auth }) => {
             <div className={styles.vertical}></div>
             <div className={styles.r} onMouseEnter={() => { setIsFocus(2) }} onMouseLeave={() => { setIsFocus(0) }}>
                 <Info active={isFocus == 2 ? true : false} />
+                <MiniBox active={isFocus == 2 ? true : false} />
+                <LinkBtn active={isFocus == 2 ? true : false} item={{href: "https://github.com/yty0643", icon: faGithub}} />
             </div>
         </div>
     );

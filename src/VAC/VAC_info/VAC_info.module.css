@@ -2,6 +2,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    transform: translateY(100px);
+    transition: all ease-in 300ms;
+}
+.info.active{
+    transform: translateY(0);
 }
 
 .title{
@@ -9,14 +15,15 @@
 }
 
 .description{
-    min-width: 20px;
+    width: 70px;
     font-weight: 100;
     opacity: 1;
     transition: all ease-in 300ms;
     overflow: hidden;
     text-overflow: ellipsis;
-    /* white-space: nowrap; */
+    white-space: nowrap;
 }
 .description.active{
     opacity: 1;
+    width: auto;
 }

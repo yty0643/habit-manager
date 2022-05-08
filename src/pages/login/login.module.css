@@ -30,6 +30,10 @@
     transition: all ease-in 300ms;
 }
 
+.r{
+    justify-content: space-around;
+}
+
 .l:hover,
 .r:hover{
     flex: 1 1 62%;
