@@ -244,11 +244,11 @@ export default Login;
 ```
 
 > 개선 전 `VACLogin` 하나의 컴포넌트를 VAC 디자인 패턴을 적용하여 재사용 가능한 여러 컴포넌트로 분리하여 개발했다.
-
+>
 > 개선 후 `Login` Page component가 간단하고 직관적으로 설계된것을 확인할 수 있다.
-
+>
 > VC와 VAC는 각각 아래와 같이 설계되었다.
-
+>
 > VC: `SignInForm`, `SignInBtn`, `Info`, `LinkBtn`
-
+>
 > VAC: `VACSignInForm`, `VACSignInBtn`, `VACInfo`, `MiniBox`, `LinkBtn`, `Separator`, `Logo`
