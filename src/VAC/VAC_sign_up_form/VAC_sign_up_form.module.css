@@ -1,18 +1,64 @@
 .signUpForm{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    width: 20rem;
 }
 
 .box{
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
+    height: 40px;
 }
 
 .msg{
-    font-weight: 100;
-    font-size: 11px;
+    font-weight: 300;
+    font-size: 12px;
     margin-left: 11px;
+    color: rgb(138, 138, 138);
+}
+
+.email,
+.pass,
+.pass2{
+    padding: 5px;
+    outline: none;
+    border-radius: 3px;
+    border: 1px solid green;
+    height: 30px;
+    outline: none;
+}
+
+.email:focus,
+.pass:focus,
+.pass2:focus{
+    outline: none;
+    border: 1px solid green;
+}
+
+.email.error,
+.pass.error,
+.pass2.error{
+    border: 1px solid rgb(255, 112, 112);
+}
+
+.checkIcon{
+    margin-left: 11px;
+    color:green;
+}
+
+.signUpBtn{
+    margin-top: 30px;
+    margin-left: auto;
+    border-radius: 3px;
+    width: 100px;
+    height: 30px;
+    color:white;
+    background-color: rgb(202, 202, 202);
+    pointer-events: none;
+}
+
+.signUpBtn.active{
+    background-color: rgb(90, 196, 36);
+    pointer-events: auto;
 }

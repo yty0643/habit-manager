@@ -4,7 +4,7 @@ import Auth from '../../service/auth';
 import VACSignUpForm from '../../VAC/VAC_sign_up_form/VAC_sign_up_form';
 
 
-export interface Iprops{
+export interface IProps{
     emailRef: React.RefObject<HTMLInputElement>,
     passRef: React.RefObject<HTMLInputElement>,
     passRef2: React.RefObject<HTMLInputElement>,
@@ -13,6 +13,10 @@ export interface Iprops{
     pass2: string,
     setState: { (ref: React.RefObject<HTMLInputElement>): void },
     signUp: { (evnet: any): void },
+    emailCheck: boolean,
+    passCheck: boolean,
+    passCheck2: number,
+    isPossible: boolean,
 };
 
 const SignUpForm = ({ auth }: { auth: Auth }) => {
@@ -23,8 +27,11 @@ const SignUpForm = ({ auth }: { auth: Auth }) => {
     const [email, setEmail] = useState<string>("");
     const [pass, setPass] = useState<string>("");
     const [pass2, setPass2] = useState<string>("");
-
-    const props: Iprops = {
+    const [emailCheck, setEmailCheck] = useState<boolean>(false);
+    const [passCheck, setPassCheck] = useState<boolean>(false);
+    const [passCheck2, setPassCheck2] = useState<number>(0);
+    const [isPossible, setIsPossible] = useState<boolean>(false);
+    const props: IProps = {
         emailRef,
         passRef,
         passRef2,
@@ -59,11 +66,45 @@ const SignUpForm = ({ auth }: { auth: Auth }) => {
                     console.log(error);
                 });
         },
+        emailCheck,
+        passCheck,
+        passCheck2,
+        isPossible,
     };
 
     useEffect(() => {
-        if (email == "") console.log("H");
-    }, [email, pass, pass2]);
+        if (!email) {
+            setEmailCheck(false);
+            return;
+        }
+        setEmailCheck(true);
+    }, [email]);
+
+    useEffect(() => {
+        if (!pass) {
+            setPassCheck(false);
+            return;
+        }
+        setPassCheck(true);
+    }, [pass]);
+
+    useEffect(() => {
+        if (!pass2) {
+            setPassCheck2(0);
+            return;
+        }
+        if (pass != pass2)
+            setPassCheck2(1);
+        else
+            setPassCheck2(2);
+    }, [pass, pass2]);
+
+    useEffect(() => {
+        if (emailCheck && passCheck && passCheck2 == 2)
+            setIsPossible(true);
+        else
+            setIsPossible(false);
+    }, [emailCheck, passCheck, passCheck2]);
 
     return (
         <VACSignUpForm {...props} />
