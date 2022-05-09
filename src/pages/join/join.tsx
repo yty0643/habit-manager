@@ -1,11 +1,13 @@
 import React from 'react';
+import Auth from '../../service/auth';
+import SignUpForm from '../../VC/sign_up_form/sign_up_form';
 
-const Join = ({ }) => {
+const Join = ({ auth }: { auth: Auth }) => {
     
 
     return (
         <div>
-            <div>d</div>
+            <SignUpForm auth={auth}/>
         </div>
     )
 }

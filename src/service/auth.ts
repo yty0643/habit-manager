@@ -1,5 +1,5 @@
 import { auth } from './firebase';
-import { signInWithPopup, GithubAuthProvider, GoogleAuthProvider, FacebookAuthProvider, onAuthStateChanged, signOut } from "firebase/auth";
+import { signInWithPopup, GithubAuthProvider, GoogleAuthProvider, FacebookAuthProvider, onAuthStateChanged, signOut, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 
 class Auth{
   signIn(providerToS: string) {
@@ -18,8 +18,16 @@ class Auth{
     return signInWithPopup(auth, provider);
   };
 
+  signInEP(email: string, password: string) {
+    return signInWithEmailAndPassword(auth, email, password)
+  };
+
   signOut() {
     return signOut(auth);
+  };
+
+  signUp(email: string, password: string) {
+    return createUserWithEmailAndPassword(auth, email, password)
   };
 
   getUser() {

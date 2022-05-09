@@ -12,7 +12,7 @@ function App({ auth, db }:{auth: Auth, db: Database}) {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Login auth={auth} />} />
-          <Route path="/join" element={<Join />} />
+          <Route path="/join" element={<Join auth={auth} />} />
           <Route path="/main" element={<Main auth={auth} db={db} />} />
         </Routes>
       </BrowserRouter>

@@ -6,7 +6,12 @@ export interface IBoxes {
 };
 
 const MiniBox = ({ active }: { active: boolean }) => {
-    const [boxes, setBoxes] = useState<IBoxes>({});
+    const temp: IBoxes = {};
+    for (let i = 0; i < 31; i++) {
+        const r = Math.random() * (240 - 80) + 80;
+        temp[i] = { bgColor: `rgb(${r},${r},${r})` };
+    };
+    const [boxes, setBoxes] = useState<IBoxes>(temp);
     const intervalRef =  useRef<ReturnType<typeof setInterval>>()
 
     useEffect(() => {

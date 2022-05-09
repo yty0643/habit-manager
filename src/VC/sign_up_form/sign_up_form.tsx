@@ -1,36 +1,36 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Auth from '../../service/auth';
-import VACSignInForm from '../../VAC/VAC_sign_in_form/VAC_sign_in_form';
+import VACSignUpForm from '../../VAC/VAC_sign_up_form/VAC_sign_up_form';
 
-export interface ISignIn{
-    (event: any): void;
-};
 
-export interface Iprops {
-    active: boolean,
+export interface Iprops{
     emailRef: React.RefObject<HTMLInputElement>,
     passRef: React.RefObject<HTMLInputElement>,
+    passRef2: React.RefObject<HTMLInputElement>,
     email: string,
     pass: string,
+    pass2: string,
     setState: { (ref: React.RefObject<HTMLInputElement>): void },
-    signIn: { (evnet: any): void },
     signUp: { (evnet: any): void },
 };
 
-const SignInForm = ({ auth, active }: { auth: Auth, active: boolean }) => {
+const SignUpForm = ({ auth }: { auth: Auth }) => {
     const navigate = useNavigate();
-    const [email, setEmail] = useState<string>("");
-    const [pass, setPass] = useState<string>("");
     const emailRef = useRef<HTMLInputElement>(null);
     const passRef = useRef<HTMLInputElement>(null);
+    const passRef2 = useRef<HTMLInputElement>(null);
+    const [email, setEmail] = useState<string>("");
+    const [pass, setPass] = useState<string>("");
+    const [pass2, setPass2] = useState<string>("");
 
     const props: Iprops = {
-        active,
         emailRef,
         passRef,
+        passRef2,
         email,
         pass,
+        pass2,
         setState: (ref) => {
             if (ref.current)
                 switch (ref) {
@@ -40,33 +40,34 @@ const SignInForm = ({ auth, active }: { auth: Auth, active: boolean }) => {
                     case passRef:
                         setPass(ref.current.value);
                         break;
+                    case passRef2:
+                        setPass2(ref.current.value);
+                        break;
                 }
         },
-        signIn: (event) => {
+        signUp: (event) => {
             event.preventDefault();
-            console.log("SIGN-IN!");
             auth
-                .signInEP(email, pass)
+                .signUp(email, pass)
                 .then((userCredential) => {
                     const user = userCredential.user;
-                    navigate("/main");
+                    navigate('/main');
                 })
                 .catch((error) => {
                     const errorCode = error.code;
                     const errorMessage = error.message;
+                    console.log(error);
                 });
-            
-        },
-        signUp: (event) => {
-            event.preventDefault();
-            console.log("SIGN-UP!");
-            navigate("/join");
         },
     };
 
+    useEffect(() => {
+        if (email == "") console.log("H");
+    }, [email, pass, pass2]);
+
     return (
-        <VACSignInForm {...props} />
+        <VACSignUpForm {...props} />
     );
 };
 
-export default SignInForm;
+export default SignUpForm;
