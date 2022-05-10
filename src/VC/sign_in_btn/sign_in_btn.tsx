@@ -18,7 +18,6 @@ const SignInBtn = ({ auth, item, active }: { auth: Auth, item: IItem, active: bo
     const navigate = useNavigate();
 
     const signIn: ISignIn = () => {
-        console.log(item.provider);
         auth
             .signIn(item.provider)
             .then((res) => {

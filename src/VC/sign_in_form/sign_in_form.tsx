@@ -16,6 +16,9 @@ export interface Iprops {
     setState: { (ref: React.RefObject<HTMLInputElement>): void },
     signIn: { (evnet: any): void },
     signUp: { (evnet: any): void },
+    emailCheck: boolean,
+    passCheck: boolean,
+    msg: string,
 };
 
 const SignInForm = ({ auth, active }: { auth: Auth, active: boolean }) => {
@@ -24,6 +27,9 @@ const SignInForm = ({ auth, active }: { auth: Auth, active: boolean }) => {
     const [pass, setPass] = useState<string>("");
     const emailRef = useRef<HTMLInputElement>(null);
     const passRef = useRef<HTMLInputElement>(null);
+    const [emailCheck, setEmailCheck] = useState<boolean>(true);
+    const [passCheck, setPassCheck] = useState<boolean>(true);
+    const [msg, setMsg] = useState<string>("");
 
     const props: Iprops = {
         active,
@@ -44,7 +50,16 @@ const SignInForm = ({ auth, active }: { auth: Auth, active: boolean }) => {
         },
         signIn: (event) => {
             event.preventDefault();
-            console.log("SIGN-IN!");
+            if (!email) {
+                setEmailCheck(false);
+                return;
+            };
+            setEmailCheck(true);
+            if (!pass) {
+                setPassCheck(false);
+                return
+            };
+            setPassCheck(true);
             auth
                 .signInEP(email, pass)
                 .then((userCredential) => {
@@ -54,14 +69,25 @@ const SignInForm = ({ auth, active }: { auth: Auth, active: boolean }) => {
                 .catch((error) => {
                     const errorCode = error.code;
                     const errorMessage = error.message;
+                    if (errorCode.split('/')[1] == "invalid-email" || errorCode.split('/')[1] == "user-not-found") {
+                        setEmailCheck(false);
+                        setMsg("Invalid email");
+                    }
+                    else if (errorCode.split('/')[1] == "wrong-password") {
+                        setPassCheck(false);
+                        setMsg("Wrong password");
+                    } else {
+                        setMsg("Login restricted");
+                    }
                 });
-            
         },
         signUp: (event) => {
             event.preventDefault();
-            console.log("SIGN-UP!");
             navigate("/join");
         },
+        emailCheck,
+        passCheck,
+        msg,
     };
 
     return (

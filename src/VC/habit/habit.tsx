@@ -8,7 +8,7 @@ import HabitList from '../../VAC/habit_list/habit_list';
 export interface IUser{
     email: string,
     name: string
-}
+};
 
 export interface IHabit{
     id: number,
@@ -96,9 +96,8 @@ const Habit = ({ auth, db }: { auth: Auth, db: Database }) => {
         auth
             .getUser()
             .then((res: any) => {
-                console.log(res);
                 setUser({
-                    email: res.reloadUserInfo.email.split('.')[0],
+                    email: res.providerData[0].email.split('.')[0],
                     name: res.reloadUserInfo.displayName,
                 });
             })
@@ -119,7 +118,7 @@ const Habit = ({ auth, db }: { auth: Auth, db: Database }) => {
             <button onClick={signOut}>signOut</button>
             <HabitList {...props} />
         </div>
-    )
+    );
 };
 
 export default Habit;

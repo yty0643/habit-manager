@@ -24,7 +24,7 @@ const Login = ({ auth }: { auth: Auth }) => {
             <div className={styles.r} onMouseEnter={() => { setIsFocus(2) }} onMouseLeave={() => { setIsFocus(0) }}>
                 <Info active={isFocus == 2 ? true : false} />
                 <MiniBox active={isFocus == 2 ? true : false} />
-                <LinkBtn active={isFocus == 2 ? true : false} item={{href: "https://github.com/yty0643", icon: faGithub}} />
+                <LinkBtn active={isFocus == 2 ? true : false} item={{href: "https://github.com/yty0643/habit-manager", icon: faGithub}} />
             </div>
         </div>
     );

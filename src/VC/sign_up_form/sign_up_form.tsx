@@ -17,6 +17,7 @@ export interface IProps{
     passCheck: boolean,
     passCheck2: number,
     isPossible: boolean,
+    msg:string,
 };
 
 const SignUpForm = ({ auth }: { auth: Auth }) => {
@@ -31,6 +32,7 @@ const SignUpForm = ({ auth }: { auth: Auth }) => {
     const [passCheck, setPassCheck] = useState<boolean>(false);
     const [passCheck2, setPassCheck2] = useState<number>(0);
     const [isPossible, setIsPossible] = useState<boolean>(false);
+    const [msg, setMsg] = useState<string>("");
     const props: IProps = {
         emailRef,
         passRef,
@@ -63,13 +65,19 @@ const SignUpForm = ({ auth }: { auth: Auth }) => {
                 .catch((error) => {
                     const errorCode = error.code;
                     const errorMessage = error.message;
-                    console.log(error);
+                    if (errorCode.split('/')[1] == "invalid-email") {
+                        setMsg("Invalid email");
+                    } else {
+                        setMsg("Login restricted");
+                    }
+                    setEmailCheck(false);
                 });
         },
         emailCheck,
         passCheck,
         passCheck2,
         isPossible,
+        msg,
     };
 
     useEffect(() => {
