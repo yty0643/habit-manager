@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { IBox, IBoxes } from '../box/box';
 import Auth from '../../service/auth';
 import Database from '../../service/database';
-import HabitList from '../../VAC/habit_list/habit_list';
+import HabitList from '../../VAC/habit_list/VAC_habit_list';
+import Habit_add from '../../VAC/habit_add/habit_add';
 
 export interface IUser{
     email: string,
@@ -33,13 +34,9 @@ export interface IHandleBox{
     (id: number, today: string, boxes: IBox): void;
 };
 
-export interface IProps{
-    habits: IHabits,
-    addInpRef: React.RefObject<HTMLInputElement>,
-    addHabit: IAddHabit,
-    delHabit: IDelHabit,
-    handleBox: IHandleBox,
-};
+export interface ISignOut{
+    (): void;
+}
 
 const Habit = ({ auth, db }: { auth: Auth, db: Database }) => {
     const navigate = useNavigate();
@@ -47,42 +44,40 @@ const Habit = ({ auth, db }: { auth: Auth, db: Database }) => {
     const [habits, setHabits] = useState<IHabits>({});
     const addInpRef = useRef<HTMLInputElement>(null);
 
-    const props: IProps = {
-        habits,
-        addInpRef,
-        addHabit: () => {
-            const newHabit: IHabit = {
-                id: Date.now(),
-                name: addInpRef.current?.value || "",
-                count: 0,
-                boxesJSON: {},
-            };
-            setHabits(habits => {
-                const temp = { ...habits };
-                temp[newHabit.id] = newHabit;
-                return temp;
-            });
-            addInpRef.current!.value = "";
-        },
-        delHabit: (habit) => {
-            setHabits(habits => {
-                const temp = { ...habits };
-                delete temp[habit.id];
-                return temp;
-            });
-        },
-        handleBox: (id, today, data) => {
-            setHabits(habits => {
-                const temp = { ...habits };
-                const todayTemp = { ...temp[id].boxesJSON }
-                todayTemp[today] = data;
-                temp[id].boxesJSON = todayTemp;
-                return temp;
-            });
-        },
+    const addHabit: IAddHabit = () => {
+        const newHabit: IHabit = {
+            id: Date.now(),
+            name: addInpRef.current?.value || "",
+            count: 0,
+            boxesJSON: {},
+        };
+        setHabits(habits => {
+            const temp = { ...habits };
+            temp[newHabit.id] = newHabit;
+            return temp;
+        });
+        addInpRef.current!.value = "";
     };
 
-    const signOut = () => {
+    const delHabit: IDelHabit = (habit) => {
+        setHabits(habits => {
+            const temp = { ...habits };
+            delete temp[habit.id];
+            return temp;
+        });
+    };
+
+    const handleBox: IHandleBox = (id, today, data) => {
+        setHabits(habits => {
+            const temp = { ...habits };
+            const todayTemp = { ...temp[id].boxesJSON }
+            todayTemp[today] = data;
+            temp[id].boxesJSON = todayTemp;
+            return temp;
+        });
+    };
+
+    const signOut: ISignOut = () => {
         auth
             .signOut()
             .then(() => {
@@ -114,9 +109,19 @@ const Habit = ({ auth, db }: { auth: Auth, db: Database }) => {
     
     return (
         <div>
-            <p>{user?.email}</p>
-            <button onClick={signOut}>signOut</button>
-            <HabitList {...props} />
+            <div>
+                <p>{user?.email}</p>
+                <button onClick={signOut}>signOut</button>
+            </div>
+            <div>
+                {/* <Habit_add
+                    addHabit={addHabit}
+                    addInpRef={addInpRef} /> */}
+            </div>
+            <HabitList
+                habits={habits}
+                delHabit={delHabit}
+                handleBox={handleBox} />
         </div>
     );
 };

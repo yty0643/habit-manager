@@ -1,0 +1,31 @@
+.main{
+    width: 100%;
+    height: 100%;
+    background-color: white;
+}
+.main.dark{
+    background-color: rgb(30, 30, 30);
+}
+
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 3rem;
+    padding: 0.5rem 1rem;
+    background-color: rgb(50, 50, 50);
+}
+
+.btns{
+    display: flex;
+    justify-content: space-between;
+    width: 3rem;
+}
+
+.habitSection{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}

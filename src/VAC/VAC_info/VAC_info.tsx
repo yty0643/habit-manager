@@ -5,7 +5,7 @@ import Logo from '../logo/logo';
 const VACInfo = ({ active }: { active: boolean }) => {
     return (
         <div className={`${styles.info} ${active && styles.active}`}>
-            <Logo />
+            <Logo isDark={false}/>
             <p className={`${styles.title} ${active && styles.active}`}>
                 habit-manager
             </p>

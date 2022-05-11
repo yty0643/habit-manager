@@ -1,28 +1,40 @@
 import React from 'react';
-import HabitItem from '../habit_item/habit_item';
-import HabitAdd from '../habit_add/habit_add';
-import { IProps } from '../../VC/habit/habit';
+import { IHabit, IHabits } from '../../pages/main/main';
+import { IBox } from '../../VC/box/box';
+import VACHabitlist from './VAC_habit_list';
 
-const HabitList = ({ habits, addInpRef, addHabit, delHabit, handleBox } : IProps) => {
+export interface IDelHabit{
+    (habit: IHabit): void;
+};
+
+export interface IHandleBox{
+    (id: number, today: string, boxes: IBox): void;
+};
+
+const HabitList = ({ habits, setHabits }: { habits: IHabits, setHabits: React.Dispatch<React.SetStateAction<IHabits>> }) => {
+    const delHabit: IDelHabit = (habit) => {
+        setHabits(habits => {
+            const temp = { ...habits };
+            delete temp[habit.id];
+            return temp;
+        });
+    };
+
+    const handleBox: IHandleBox = (id, today, data) => {
+        setHabits(habits => {
+            const temp = { ...habits };
+            const todayTemp = { ...temp[id].boxesJSON }
+            todayTemp[today] = data;
+            temp[id].boxesJSON = todayTemp;
+            return temp;
+        });
+    };
+
     return (
         <div>
-                <HabitAdd
-                    addHabit={addHabit}
-                    addInpRef={addInpRef}
-                />
-            <ul>
-                {Object.keys(habits).map(key => {
-                    return (
-                        <HabitItem
-                            key={key}
-                            habit={habits[Number(key)]}
-                            delHabit={delHabit}
-                            handleBox={handleBox} />
-                    )
-                })}
-            </ul>
+            <VACHabitlist habits={habits} delHabit={delHabit} handleBox={handleBox} />
         </div>
-    )
-}
+    );
+};
 
-export default React.memo(HabitList);
+export default HabitList;

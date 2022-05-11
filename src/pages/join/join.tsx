@@ -8,7 +8,7 @@ const Join = ({ auth }: { auth: Auth }) => {
 
     return (
         <div className={styles.join}>
-            <Logo />
+            <Logo isDark={false} />
             <p className={styles.title}>Welcome to habit-manager</p>
             <p className={styles.description}>Let's get you signed in and straight to the main.</p>
             <SignUpForm auth={auth}/>

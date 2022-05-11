@@ -1,27 +1,30 @@
-import React from 'react';
-import { IAddHabit } from '../../VC/habit/habit';
+import React, { useRef } from 'react';
+import { IHabit, IHabits } from '../../pages/main/main';
+import VACHabitAdd from './VAC_habit_add';
 
-interface Iprops{
-    addHabit: IAddHabit,
-    addInpRef: React.RefObject<HTMLInputElement>,
-}
+export interface IAddHabit{
+    (): void;
+};
 
-const HabitAdd = ({addHabit, addInpRef}: Iprops) => {
+const HabitAdd = ({ habits, setHabits }: { habits: IHabits, setHabits: React.Dispatch<React.SetStateAction<IHabits>> }) => {
+    const addInpRef = useRef<HTMLInputElement>(null);
+    const addHabit: IAddHabit = () => {
+        const newHabit: IHabit = {
+            id: Date.now(),
+            name: addInpRef.current?.value || "",
+            count: 0,
+            boxesJSON: {},
+        };
+        setHabits(habits => {
+            const temp = { ...habits };
+            temp[newHabit.id] = newHabit;
+            return temp;
+        });
+        addInpRef.current!.value = "";
+    };
+
     return (
-        <div>
-            <input
-                ref={addInpRef}
-                type="text"
-                onKeyUp={(event) => {
-                    if (event.key === 'Enter')
-                        addHabit();
-            }}/>
-            <button
-                onClick={() => {
-                    addHabit()
-            }}>등록</button>
-        </div>
+        <VACHabitAdd addHabit={addHabit} addInpRef={addInpRef} />
     )
 }
-
-export default React.memo(HabitAdd);
+export default HabitAdd;

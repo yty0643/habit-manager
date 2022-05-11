@@ -1,6 +1,7 @@
 import React from 'react';
 import Box from '../../VC/box/box';
 import { IHabit, IDelHabit, IHandleBox } from '../../VC/habit/habit';
+import styles from './habit_item.module.css';
 
 interface IProps{
     habit: IHabit,
@@ -10,14 +11,8 @@ interface IProps{
 
 const HabitItem = ({ habit, delHabit, handleBox }: IProps) => {
     return (
-        <li>
-            <p>{habit?.id}</p>
-            <p>{habit?.name}</p>
-            <p>{habit?.count}</p>
-            <button onClick={() => {
-                delHabit(habit);
-            }}>del</button>
-            <Box id={habit.id} boxesJSON={habit.boxesJSON} handleBox={handleBox} />
+        <li className={styles.habit}>
+            
         </li>
     );
 };
