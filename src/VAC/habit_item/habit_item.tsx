@@ -1,7 +1,7 @@
 import React from 'react';
 import Box from '../../VC/box/box';
-import { IHabit, IDelHabit, IHandleBox } from '../../VC/habit/habit';
-import { IonClick } from '../habit_list/habit_list';
+import { IHabit } from '../../pages/main/main';
+import { IDelHabit, IHandleBox, IonClick } from '../habit_list/habit_list';
 import styles from './habit_item.module.css';
 
 interface IProps{

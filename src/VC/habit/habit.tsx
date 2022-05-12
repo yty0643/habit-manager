@@ -4,7 +4,7 @@ import { IBox, IBoxes } from '../box/box';
 import Auth from '../../service/auth';
 import Database from '../../service/database';
 import HabitList from '../../VAC/habit_list/VAC_habit_list';
-import Habit_add from '../../VAC/habit_add/habit_add';
+import Habit_add from '../../VAC/habit_add_btn/habit_add_btn';
 
 export interface IUser{
     email: string,

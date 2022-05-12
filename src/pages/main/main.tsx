@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Auth from '../../service/auth';
 import Database from '../../service/database';
-import HabitAdd from '../../VAC/habit_add/habit_add';
+import HabitAddBtn from '../../VAC/habit_add_btn/habit_add_btn';
 import Habitlist from '../../VAC/habit_list/habit_list';
 import HabitPreivew from '../../VAC/habit_preview/habit_preview';
 import Logo from '../../VAC/logo/logo';
@@ -17,9 +17,17 @@ export interface IUser{
     name: string
 };
 
+export interface IInfo{
+    totalTime: number,
+    habitCount: number,
+    img: any,
+}
+
 export interface IHabit{
     id: number,
     name: string,
+    description: string,
+    goal: string,
     count: number,
     boxesJSON: IBoxes,
 };
@@ -32,6 +40,7 @@ const Main = ({ auth, db }: { auth: Auth, db: Database }) => {
     const navigate = useNavigate();
     const [isDark, setIsDark] = useState<boolean>(false);
     const [user, setUser] = useState<IUser>();
+    const [info, setInfo] = useState<IInfo>();
     const [habits, setHabits] = useState<IHabits>({});
     const [selectedHabit, setSelectedHabit] = useState<IHabit|null>(null);
 
@@ -61,10 +70,10 @@ const Main = ({ auth, db }: { auth: Auth, db: Database }) => {
                     <SignOutBtn auth={auth} />
                 </div>
             </div>
-            <div className={styles.habitSection}>
-                {user && <User db={db} user={user} />}
+            <div className={styles.userSection}>
+                {user && <User db={db} isDark={isDark} user={user} />}
                 <Habitlist habits={habits} setHabits={setHabits} setSelectedHabit={setSelectedHabit}/>
-                <HabitAdd habits={habits} setHabits={setHabits}/>
+                <HabitAddBtn isDark={isDark} habits={habits} setHabits={setHabits}/>
             </div>
             <div className={styles.previewSection}>
                 {selectedHabit && <HabitPreivew habit={selectedHabit} />}

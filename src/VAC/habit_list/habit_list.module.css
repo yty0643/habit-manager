@@ -3,5 +3,6 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    width: 14rem;
+    margin: 1rem 0 0 1rem;
+    width: 16rem;
 }

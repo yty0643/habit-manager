@@ -7,8 +7,9 @@ export interface IOnChange{
     (event: any): void;
 }
 
-const User = ({ db, user }: { db: Database, user: IUser }) => {
+const User = ({ db, isDark, user }: { db: Database, isDark:boolean, user: IUser }) => {
     const [img, setImg] = useState<any>();
+
     const onChange: IOnChange = (event) => {
         if (!event.target.files.length) return;
         const file = event.target.files[0];
@@ -39,7 +40,7 @@ const User = ({ db, user }: { db: Database, user: IUser }) => {
     }, [img]);
     
     return (
-        <VACUser user={user} img={img} onChange={onChange} />
+        <VACUser isDark={isDark} user={user} img={img} onChange={onChange} />
     );
 };
 

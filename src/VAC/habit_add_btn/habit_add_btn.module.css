@@ -1,0 +1,29 @@
+.btn{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.3rem;
+    height: 3.3rem;
+    border: 2px solid rgb(200, 200, 200);
+    border-radius: 50%;
+    font-size: 1.5rem;
+    color: rgb(200, 200, 200);
+    cursor: pointer;
+}
+
+.btn.dark{
+    border: 2px solid rgb(100, 100, 100);
+    color: rgb(100, 100, 100);
+}
+
+.btn:hover{
+    transform: scale(1.1);
+    border: 2px solid rgb(100, 100, 100);
+    color: rgb(100, 100, 100);
+}
+
+.btn.dark:hover{
+    border: 2px solid rgb(200, 200, 200);
+    color: rgb(200, 200, 200);
+}

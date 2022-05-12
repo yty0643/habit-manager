@@ -1,0 +1,78 @@
+.form{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.description{
+    font-size: 0.8rem;
+    font-weight: 300;
+    display: flex;
+    margin-bottom: 3px;
+}
+.description.dark{
+    color:white;
+}
+
+.name,
+.des,
+.goal{
+    margin-bottom: 1rem;
+    padding: 5px;
+    background-color: transparent;
+    border: 1px solid rgb(200, 200, 200);
+    
+}
+.name.error,
+.des.error,
+.goal.error{
+    border: 1px solid rgb(255, 112, 112);  
+}
+
+.name:focus,
+.des:focus,
+.goal:focus{
+    border: 1px solid rgb(100, 100, 100);
+}
+
+.btn{
+    border-radius: 3px;
+    width: 100px;
+    height: 30px;
+    margin-left: auto;
+    background-color: rgb(200, 200, 200);
+    pointer-events: none;
+}
+.btn.active{
+    background-color: rgb(90, 196, 36);
+    pointer-events: auto;
+}
+
+.name.dark,
+.des.dark,
+.goal.dark{
+    border: 1px solid rgb(100, 100, 100);
+    color:white;
+}
+
+.name.dark.error,
+.des.dark.error,
+.goal.dark.error{
+    border: 1px solid rgb(255, 112, 112);  
+}
+
+.name.dark:focus,
+.des.dark:focus,
+.goal.dark:focus{
+    border: 1px solid rgb(200, 200, 200);
+}
+
+.btn.dark{
+    background-color: rgb(100, 100, 100);
+    color:white;
+}
+.btn.dark.active{
+    background-color: rgb(90, 196, 36);
+    pointer-events: auto;
+}
