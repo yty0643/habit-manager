@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import { IHabit, IHabits } from '../../pages/main/main';
 import BoxList from '../../VAC/box_list/box_list';
-import { IHandleBox } from '../habit/habit';
 import Timer from '../timer/timer';
 
 export interface IBox{
@@ -14,9 +14,23 @@ export interface IBoxes{
     [key: string]: IBox
 };
 
-const Box = ({ id, boxesJSON, handleBox }: { id: number, boxesJSON: IBoxes, handleBox: IHandleBox }) => {
+export interface IHandleBox{
+    (id: number, today: string, boxes: IBox): void;
+};
+
+const Box = ({ habit, setHabits }: { habit: IHabit, setHabits: React.Dispatch<React.SetStateAction<IHabits>> }) => {
     const [boxes, setBoxes] = useState<IBoxes>({});
     
+    const handleBox: IHandleBox = (id, today, data) => {
+        setHabits(habits => {
+            const temp = { ...habits };
+            const todayTemp = { ...temp[id].boxesJSON }
+            todayTemp[today] = data;
+            temp[id].boxesJSON = todayTemp;
+            return temp;
+        });
+    };
+
     const initBoxes: () => void = useCallback(() => {
         const temp: IBoxes = {};
         const day = new Date().getDay() + 1;
@@ -26,13 +40,13 @@ const Box = ({ id, boxesJSON, handleBox }: { id: number, boxesJSON: IBoxes, hand
             const key = date.toISOString().split('T')[0];
             temp[key] = {
                 date: key,
-                habitTime: boxesJSON[key]?.habitTime || {},
-                totalTime: boxesJSON[key]?.totalTime || 0,
-                color: boxesJSON[key]?.color || "grey", //추후 색상 수정(base color)
+                habitTime: habit.boxesJSON[key]?.habitTime || {},
+                totalTime: habit.boxesJSON[key]?.totalTime || 0,
+                color: habit.boxesJSON[key]?.color || "grey", //추후 색상 수정(base color)
             };
         };
         setBoxes(temp);
-    }, [boxesJSON]);
+    }, [habit.boxesJSON]);
 
     const setTodayBox: (time: number, start: string, end: string) => void = (time, startTime, end) => {
         if (time < 1000) return;
@@ -49,7 +63,7 @@ const Box = ({ id, boxesJSON, handleBox }: { id: number, boxesJSON: IBoxes, hand
                 color: colorSelector(time),
             };
             temp[`${today}`] = data;
-            handleBox(id, today, data);
+            handleBox(habit.id, today, data);
             return temp;
         });
     };
@@ -66,7 +80,7 @@ const Box = ({ id, boxesJSON, handleBox }: { id: number, boxesJSON: IBoxes, hand
 
     useEffect(() => {
         initBoxes();
-    }, [boxesJSON]);
+    }, [habit.boxesJSON]);
     
     return (
         <div>

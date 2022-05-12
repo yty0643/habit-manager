@@ -4,11 +4,12 @@ import Auth from '../../service/auth';
 import Database from '../../service/database';
 import HabitAdd from '../../VAC/habit_add/habit_add';
 import Habitlist from '../../VAC/habit_list/habit_list';
+import HabitPreivew from '../../VAC/habit_preview/habit_preview';
 import Logo from '../../VAC/logo/logo';
 import SignOutBtn from '../../VAC/sign_out_btn/sign_out_btn';
 import ThemeToggleBtn from '../../VAC/theme_toggle_btn/theme_toggle_btn';
 import User from '../../VAC/user/user';
-import { IBoxes } from '../../VC/box/box';
+import Box, { IBoxes } from '../../VC/box/box';
 import styles from './main.module.css';
 
 export interface IUser{
@@ -32,7 +33,7 @@ const Main = ({ auth, db }: { auth: Auth, db: Database }) => {
     const [isDark, setIsDark] = useState<boolean>(false);
     const [user, setUser] = useState<IUser>();
     const [habits, setHabits] = useState<IHabits>({});
-    
+    const [selectedHabit, setSelectedHabit] = useState<IHabit|null>(null);
 
     useEffect(() => {
         auth
@@ -61,9 +62,13 @@ const Main = ({ auth, db }: { auth: Auth, db: Database }) => {
                 </div>
             </div>
             <div className={styles.habitSection}>
-                {user && <User user={user} />}
-                <Habitlist habits={habits} setHabits={setHabits} />
+                {user && <User db={db} user={user} />}
+                <Habitlist habits={habits} setHabits={setHabits} setSelectedHabit={setSelectedHabit}/>
                 <HabitAdd habits={habits} setHabits={setHabits}/>
+            </div>
+            <div className={styles.previewSection}>
+                {selectedHabit && <HabitPreivew habit={selectedHabit} />}
+                {selectedHabit && <Box habit={selectedHabit} setHabits={setHabits} />}
             </div>
         </div>
     );

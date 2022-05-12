@@ -7,11 +7,15 @@ export interface IDelHabit{
     (habit: IHabit): void;
 };
 
+export interface IonClick{
+    (habit: IHabit): void;
+};
+
 export interface IHandleBox{
     (id: number, today: string, boxes: IBox): void;
 };
 
-const HabitList = ({ habits, setHabits }: { habits: IHabits, setHabits: React.Dispatch<React.SetStateAction<IHabits>> }) => {
+const HabitList = ({ habits, setHabits, setSelectedHabit }: { habits: IHabits, setHabits: React.Dispatch<React.SetStateAction<IHabits>>, setSelectedHabit: React.Dispatch<React.SetStateAction<IHabit | null>> }) => {
     const delHabit: IDelHabit = (habit) => {
         setHabits(habits => {
             const temp = { ...habits };
@@ -19,6 +23,10 @@ const HabitList = ({ habits, setHabits }: { habits: IHabits, setHabits: React.Di
             return temp;
         });
     };
+
+    const onClick: IonClick = (habit) => {
+        setSelectedHabit(habit);
+    }
 
     const handleBox: IHandleBox = (id, today, data) => {
         setHabits(habits => {
@@ -32,7 +40,7 @@ const HabitList = ({ habits, setHabits }: { habits: IHabits, setHabits: React.Di
 
     return (
         <div>
-            <VACHabitlist habits={habits} delHabit={delHabit} handleBox={handleBox} />
+            <VACHabitlist habits={habits} delHabit={delHabit} onClick={onClick} handleBox={handleBox}  />
         </div>
     );
 };

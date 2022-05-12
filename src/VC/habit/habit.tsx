@@ -104,7 +104,7 @@ const Habit = ({ auth, db }: { auth: Auth, db: Database }) => {
 
     useEffect(() => {
         if (!user) return;
-        db.write(user.email, habits);
+        db.write(user.email, `user/${user.email}/`, habits);
     }, [habits]);
     
     return (
@@ -118,10 +118,10 @@ const Habit = ({ auth, db }: { auth: Auth, db: Database }) => {
                     addHabit={addHabit}
                     addInpRef={addInpRef} /> */}
             </div>
-            <HabitList
+            {/* <HabitList
                 habits={habits}
                 delHabit={delHabit}
-                handleBox={handleBox} />
+                handleBox={handleBox} /> */}
         </div>
     );
 };
