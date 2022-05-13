@@ -27,9 +27,9 @@ const HabitAddForm = ({ isDark, habits, setIsActive, setHabits }: { isDark: bool
             name: name,
             description: description,
             goal: goal,
-            count: 0,
             boxesJSON: {},
         };
+        console.log(newHabit);
         setHabits(habits => {
             const temp = { ...habits };
             temp[newHabit.id] = newHabit;
@@ -37,6 +37,11 @@ const HabitAddForm = ({ isDark, habits, setIsActive, setHabits }: { isDark: bool
         });
         setIsActive(false);
     };
+
+    const exit:IOnClick = (event) => {
+        event.preventDefault();
+        setIsActive(false);
+    }
 
     const onChange: IOnChange = (event) => {
         const value = event.target.value;
@@ -74,7 +79,7 @@ const HabitAddForm = ({ isDark, habits, setIsActive, setHabits }: { isDark: bool
     }, [isName, isDescription, isGoal]);
 
     return (
-        <VACHabitAddForm isDark={isDark} isCheck={isCheck} isName={isName} isDescription={isDescription} isGoal={isGoal} onClick={onClick} onChange={onChange} />
+        <VACHabitAddForm isDark={isDark} isCheck={isCheck} isName={isName} isDescription={isDescription} isGoal={isGoal} onClick={onClick} exit={exit} onChange={onChange} />
     );
 };
 

@@ -29,7 +29,7 @@ const User = ({ db, isDark, user }: { db: Database, isDark:boolean, user: IUser 
                 setImg(res.img);
             })
             .catch((error) => {
-                console.log(error);
+                // console.log(error);
             });
     }, []);
 

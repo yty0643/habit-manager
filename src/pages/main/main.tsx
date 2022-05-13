@@ -28,7 +28,6 @@ export interface IHabit{
     name: string,
     description: string,
     goal: string,
-    count: number,
     boxesJSON: IBoxes,
 };
 
@@ -58,6 +57,19 @@ const Main = ({ auth, db }: { auth: Auth, db: Database }) => {
                 navigate('/');
             });
     }, []);
+
+    useEffect(() => {
+        if (!user) return;
+        db
+            .read(user.email, `user/${user.email}/habits`)
+            .then(res => setHabits(res));
+        
+    }, [user]);
+
+    useEffect(() => {
+        if (!user) return;
+        db.write(user.email, `user/${user.email}/habits/`, habits);
+    }, [habits]);
 
     return (
         <div className={`${styles.main} ${isDark && styles.dark}`}>

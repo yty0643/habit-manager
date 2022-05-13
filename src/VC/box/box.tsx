@@ -40,9 +40,9 @@ const Box = ({ habit, setHabits }: { habit: IHabit, setHabits: React.Dispatch<Re
             const key = date.toISOString().split('T')[0];
             temp[key] = {
                 date: key,
-                habitTime: habit.boxesJSON[key]?.habitTime || {},
-                totalTime: habit.boxesJSON[key]?.totalTime || 0,
-                color: habit.boxesJSON[key]?.color || "grey", //추후 색상 수정(base color)
+                habitTime: habit.boxesJSON && habit.boxesJSON[key]?.habitTime || {},
+                totalTime: habit.boxesJSON && habit.boxesJSON[key]?.totalTime || 0,
+                color: habit.boxesJSON && habit.boxesJSON[key]?.color || "grey", //추후 색상 수정(base color)
             };
         };
         setBoxes(temp);
