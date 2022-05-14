@@ -78,7 +78,7 @@ const Main = ({ auth, db }: { auth: Auth, db: Database }) => {
             </div>
             <div className={styles.userSection}>
                 {user && <User db={db} isDark={isDark} user={user} habits={habits}/>}
-                <Habitlist habits={habits} setHabits={setHabits} setSelectedHabit={setSelectedHabit}/>
+                <Habitlist isDark={isDark} habits={habits} setHabits={setHabits} setSelectedHabit={setSelectedHabit}/>
                 <HabitAddBtn isDark={isDark} habits={habits} setHabits={setHabits}/>
             </div>
             <div className={styles.previewSection}>

@@ -15,7 +15,7 @@ export interface IHandleBox{
     (id: number, today: string, boxes: IBox): void;
 };
 
-const HabitList = ({ habits, setHabits, setSelectedHabit }: { habits: IHabits, setHabits: React.Dispatch<React.SetStateAction<IHabits>>, setSelectedHabit: React.Dispatch<React.SetStateAction<IHabit | null>> }) => {
+const HabitList = ({ isDark, habits, setHabits, setSelectedHabit }: { isDark: boolean, habits: IHabits, setHabits: React.Dispatch<React.SetStateAction<IHabits>>, setSelectedHabit: React.Dispatch<React.SetStateAction<IHabit | null>> }) => {
     const delHabit: IDelHabit = (habit) => {
         setHabits(habits => {
             const temp = { ...habits };
@@ -40,7 +40,7 @@ const HabitList = ({ habits, setHabits, setSelectedHabit }: { habits: IHabits, s
 
     return (
         <div>
-            <VACHabitlist habits={habits} delHabit={delHabit} onClick={onClick} handleBox={handleBox}  />
+            <VACHabitlist isDark={isDark} habits={habits} delHabit={delHabit} onClick={onClick} handleBox={handleBox} />
         </div>
     );
 };
