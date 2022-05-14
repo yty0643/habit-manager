@@ -17,11 +17,6 @@ export interface IUser{
     name: string
 };
 
-export interface IInfo{
-    totalTime: number,
-    habitCount: number,
-    img: any,
-}
 
 export interface IHabit{
     id: number,
@@ -39,7 +34,6 @@ const Main = ({ auth, db }: { auth: Auth, db: Database }) => {
     const navigate = useNavigate();
     const [isDark, setIsDark] = useState<boolean>(false);
     const [user, setUser] = useState<IUser>();
-    const [info, setInfo] = useState<IInfo>();
     const [habits, setHabits] = useState<IHabits>({});
     const [selectedHabit, setSelectedHabit] = useState<IHabit|null>(null);
 
@@ -83,7 +77,7 @@ const Main = ({ auth, db }: { auth: Auth, db: Database }) => {
                 </div>
             </div>
             <div className={styles.userSection}>
-                {user && <User db={db} isDark={isDark} user={user} />}
+                {user && <User db={db} isDark={isDark} user={user} habits={habits}/>}
                 <Habitlist habits={habits} setHabits={setHabits} setSelectedHabit={setSelectedHabit}/>
                 <HabitAddBtn isDark={isDark} habits={habits} setHabits={setHabits}/>
             </div>

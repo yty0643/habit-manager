@@ -3,9 +3,9 @@ import { IUser } from '../../pages/main/main';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImage } from '@fortawesome/free-solid-svg-icons';
 import styles from './user.module.css';
-import { IOnChange } from './user';
+import { IInfo, IOnChange } from './user';
 
-const VACUser = ({ isDark, user, img, onChange }: { isDark: boolean, user: IUser, img: any, onChange: IOnChange }) => {
+const VACUser = ({ isDark, user, info, img, onChange }: { isDark: boolean, user: IUser, info:IInfo, img: any, onChange: IOnChange }) => {
     return (
         <div className={styles.user}>
             <label className={styles.profile} htmlFor="ex_file">
@@ -15,9 +15,19 @@ const VACUser = ({ isDark, user, img, onChange }: { isDark: boolean, user: IUser
                     <FontAwesomeIcon icon={faImage} />
                 </div>
             </label>
-            <div>
-                <p>{user.email}</p>
-                <p>{user.name}</p>
+            <div className={`${styles.info} ${isDark && styles.dark}`}>
+                <div>
+                    <p className={styles.description}>sign in as </p>
+                    <p className={styles.value}>{user.email.split('@')[0]}</p>
+                </div>
+                <div>
+                    <p className={styles.value}>{info.habitCount}</p>
+                    <p className={styles.description}> habit</p>
+                </div>
+                <div>
+                    <p className={styles.value}>{info.totalHour}</p>
+                    <p className={styles.description}> total hour</p>
+                </div>
             </div>
         </div>
     );

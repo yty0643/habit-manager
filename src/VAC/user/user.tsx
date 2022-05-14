@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { IUser } from '../../pages/main/main';
+import { IHabits, IUser } from '../../pages/main/main';
 import Database from '../../service/database';
 import VACUser from './VAC_user';
 
@@ -7,7 +7,16 @@ export interface IOnChange{
     (event: any): void;
 }
 
-const User = ({ db, isDark, user }: { db: Database, isDark:boolean, user: IUser }) => {
+export interface IInfo{
+    habitCount: number,
+    totalHour: number,
+}
+
+const User = ({ db, isDark, user, habits }: { db: Database, isDark: boolean, user: IUser, habits: IHabits }) => {
+    const [info, setInfo] = useState<IInfo>({
+        totalHour: 0,
+        habitCount: 0,
+    });
     const [img, setImg] = useState<any>();
 
     const onChange: IOnChange = (event) => {
@@ -38,9 +47,31 @@ const User = ({ db, isDark, user }: { db: Database, isDark:boolean, user: IUser 
         db
             .write(user.email, `user/${user.email}/info`, { img });
     }, [img]);
+
+    useEffect(() => {
+        if (!habits) return;
+        setInfo(() => {
+            const temp: IInfo = {
+                totalHour: 0,
+                habitCount: 0,
+            };
+            const totalHour = 0;
+            Object.values(habits).map((item, index) => {
+                temp.habitCount = index + 1;
+                if (item.boxesJSON) {
+                    Object.keys(item.boxesJSON).map((key) => {
+                        temp.totalHour += item.boxesJSON[key].totalTime;
+                    })
+                }
+            });
+            temp.totalHour= Number((temp.totalHour / 1000 / 3600).toFixed(3));
+            
+            return temp;
+        });
+    }, [habits]);
     
     return (
-        <VACUser isDark={isDark} user={user} img={img} onChange={onChange} />
+        <VACUser isDark={isDark} user={user} info={info} img={img} onChange={onChange} />
     );
 };
 
