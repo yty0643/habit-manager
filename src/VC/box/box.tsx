@@ -10,6 +10,7 @@ export interface IBox{
     color: string,
 };
 
+
 export interface IBoxes{
     [key: string]: IBox
 };

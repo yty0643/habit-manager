@@ -55,7 +55,6 @@ const User = ({ db, isDark, user, habits }: { db: Database, isDark: boolean, use
                 totalHour: 0,
                 habitCount: 0,
             };
-            const totalHour = 0;
             Object.values(habits).map((item, index) => {
                 temp.habitCount = index + 1;
                 if (item.boxesJSON) {

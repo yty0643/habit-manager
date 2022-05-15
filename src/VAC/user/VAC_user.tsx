@@ -22,7 +22,7 @@ const VACUser = ({ isDark, user, info, img, onChange }: { isDark: boolean, user:
                 </div>
                 <div>
                     <p className={styles.value}>{info.habitCount}</p>
-                    <p className={styles.description}> habit</p>
+                    <p className={styles.description}> habits</p>
                 </div>
                 <div>
                     <p className={styles.value}>{info.totalHour}</p>
