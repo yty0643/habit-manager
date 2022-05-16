@@ -1,0 +1,28 @@
+.timer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 3rem;
+    border-radius: 5px;
+    color: rgb(50, 50, 50);
+    transform: translateY(3rem);
+}
+.timer.dark{
+    color: rgb(230, 230, 230);
+}
+
+.btn{
+    color: rgb(50, 50, 50);
+    font-size: 3.5rem;
+    line-height: 2.5rem;
+    padding-top: 5px;
+}
+.btn.dark{
+    color: rgb(230, 230, 230);
+}
+
+.time{
+    font-weight: 300;
+    font-size: 3rem;
+    margin-left: 10px;
+}

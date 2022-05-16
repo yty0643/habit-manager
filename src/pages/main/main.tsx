@@ -11,6 +11,7 @@ import ThemeToggleBtn from '../../components/theme_toggle_btn/theme_toggle_btn';
 import User from '../../components/user/user';
 import BoxList, { IBoxes } from '../../components/box_list/box_list';
 import styles from './main.module.css';
+import Timer from '../../components/timer/timer';
 
 export interface IUser{
     email: string,
@@ -92,8 +93,11 @@ const Main = ({ auth, db }: { auth: Auth, db: Database }) => {
                 <HabitAddBtn isDark={isDark} habits={habits} setHabits={setHabits}/>
             </div>
             <div className={`${styles.previewSection} ${isDark && styles.dark}`}>
-                {selectedHabit && <HabitPreivew isDark={isDark} habit={selectedHabit} />}
-                {selectedHabit && <BoxList isDark={isDark} habit={selectedHabit} setHabits={setHabits} setSelectedHabit={setSelectedHabit} />}
+                <div>
+                    {selectedHabit && <Timer isDark={isDark} habit={selectedHabit} setHabits={setHabits} setSelectedHabit={setSelectedHabit} />}
+                    {selectedHabit && <HabitPreivew isDark={isDark} habit={selectedHabit} />}
+                    {selectedHabit && <BoxList isDark={isDark} habit={selectedHabit} />}
+                </div>
             </div>
             <div className={`${styles.footer} ${isDark && styles.dark}`}>
                 footer

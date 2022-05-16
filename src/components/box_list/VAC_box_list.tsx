@@ -5,7 +5,7 @@ import styles from './box_list.module.css';
 
 const VACBoxList = ({ isDark, boxes }: { isDark: boolean, boxes: IBoxes }) => {
     return (
-        <ul className={styles.boxList}>
+        <ul className={`${styles.boxList} ${isDark && styles.dark}`}>
             {Object.keys(boxes).map(key => (
                 <BoxItem
                     key={key}

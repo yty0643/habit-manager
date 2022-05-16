@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { IHabit, IHabits } from '../../pages/main/main';
 import VACBoxList from './VAC_box_list';
-import Timer from '../timer/timer';
 
 export interface IBox{
     date: string,
@@ -19,19 +18,8 @@ export interface IHandleBox{
     (id: number, today: string, boxes: IBox): void;
 };
 
-const BoxList = ({ isDark, habit, setHabits, setSelectedHabit }: { isDark: boolean, habit: IHabit, setHabits: React.Dispatch<React.SetStateAction<IHabits>>, setSelectedHabit: React.Dispatch<React.SetStateAction<IHabit | null>> }) => {
+const BoxList = ({ isDark, habit }: { isDark:boolean, habit: IHabit }) => {
     const [boxes, setBoxes] = useState<IBoxes>({});
-    
-    const handleBox: IHandleBox = (id, today, data) => {
-        setHabits(habits => {
-            const temp = { ...habits };
-            const todayTemp = { ...temp[id].boxesJSON }
-            todayTemp[today] = data;
-            temp[id].boxesJSON = todayTemp;
-            setSelectedHabit({ ...temp[id] });
-            return temp;
-        });
-    };
 
     const initBoxes: () => void = useCallback(() => {
         const temp: IBoxes = {};
@@ -50,45 +38,12 @@ const BoxList = ({ isDark, habit, setHabits, setSelectedHabit }: { isDark: boole
         setBoxes(temp);
     }, [habit.boxesJSON]);
 
-    const setTodayBox: (time: number, start: string, end: string) => void = (time, startTime, end) => {
-        if (time < 1000) return;
-        const today: string = new Date().toISOString().split('T')[0];
-        setBoxes(boxes => {
-            const temp = { ...boxes };
-            const data = {
-                ...boxes[today],
-                habitTime: {
-                    ...boxes[today].habitTime,
-                    [`${Object.keys(boxes[today].habitTime).length}`]: [startTime, end],
-                },
-                totalTime: time,
-                color: colorSelector(time),
-            };
-            temp[`${today}`] = data;
-            handleBox(habit.id, today, data);
-            return temp;
-        });
-    };
-    
-    const colorSelector: (temp: number) => string = (temp) => {
-        temp /= 1;
-        const hour: number = 3600;
-        if (temp < (2 * hour)) return "red"; // 추후 색상 수정
-        else if (temp < (4 * hour)) return "blue";
-        else if (temp < (6 * hour)) return "skyblue";
-        else if (temp < (8 * hour)) return "skyblue";
-        else return "skyblue";
-    };
-
     useEffect(() => {
         initBoxes();
     }, [habit.boxesJSON]);
     
     return (
-        <div>
-            <VACBoxList isDark={isDark} boxes={boxes} />
-            <Timer isDark={isDark} habit={habit} setTodayBox={setTodayBox} />
-        </div>
+        <VACBoxList isDark={isDark} boxes={boxes} />
     );
 };
 
