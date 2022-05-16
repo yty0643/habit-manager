@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Auth from '../../service/auth';
 import Database from '../../service/database';
-import HabitAddBtn from '../../VAC/habit_add_btn/habit_add_btn';
-import Habitlist from '../../VAC/habit_list/habit_list';
-import HabitPreivew from '../../VAC/habit_preview/habit_preview';
-import Logo from '../../VAC/logo/logo';
-import SignOutBtn from '../../VAC/sign_out_btn/sign_out_btn';
-import ThemeToggleBtn from '../../VAC/theme_toggle_btn/theme_toggle_btn';
-import User from '../../VAC/user/user';
-import BoxList, { IBoxes } from '../../VAC/box_list/box_list';
+import HabitAddBtn from '../../components/habit_add_btn/habit_add_btn';
+import Habitlist from '../../components/habit_list/habit_list';
+import HabitPreivew from '../../components/habit_preview/habit_preview';
+import Logo from '../../components/logo/logo';
+import SignOutBtn from '../../components/sign_out_btn/sign_out_btn';
+import ThemeToggleBtn from '../../components/theme_toggle_btn/theme_toggle_btn';
+import User from '../../components/user/user';
+import BoxList, { IBoxes } from '../../components/box_list/box_list';
 import styles from './main.module.css';
 
 export interface IUser{
@@ -93,10 +93,10 @@ const Main = ({ auth, db }: { auth: Auth, db: Database }) => {
             </div>
             <div className={`${styles.previewSection} ${isDark && styles.dark}`}>
                 {selectedHabit && <HabitPreivew isDark={isDark} habit={selectedHabit} />}
-                {selectedHabit && <BoxList habit={selectedHabit} setHabits={setHabits} setSelectedHabit={setSelectedHabit} />}
+                {selectedHabit && <BoxList isDark={isDark} habit={selectedHabit} setHabits={setHabits} setSelectedHabit={setSelectedHabit} />}
             </div>
             <div className={`${styles.footer} ${isDark && styles.dark}`}>
-                dd
+                footer
             </div>
         </div>
     );

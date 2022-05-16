@@ -3,7 +3,7 @@ import { IBox } from '../box_list/box_list';
 import BoxPreview from '../box_preview/box_preview';
 import styles from './box_item.module.css';
 
-const BoxItem = ({ box }: { box: IBox }) => {
+const BoxItem = ({ isDark, box }: { isDark: boolean, box: IBox }) => {
     const [preview, setPreview] = useState<boolean>(false);
 
     return (
@@ -17,7 +17,7 @@ const BoxItem = ({ box }: { box: IBox }) => {
                 setPreview(false);
             }}
         >
-            {preview && <BoxPreview box={box}/>}
+            {preview && <BoxPreview box={box} />}
         </div>
     );
 };

@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { IHabit, IHabits } from '../../pages/main/main';
 import VACBoxList from './VAC_box_list';
-import Timer from '../../VC/timer/timer';
+import Timer from '../timer/timer';
 
 export interface IBox{
     date: string,
@@ -19,7 +19,7 @@ export interface IHandleBox{
     (id: number, today: string, boxes: IBox): void;
 };
 
-const BoxList = ({ habit, setHabits, setSelectedHabit }: { habit: IHabit, setHabits: React.Dispatch<React.SetStateAction<IHabits>>, setSelectedHabit: React.Dispatch<React.SetStateAction<IHabit | null>> }) => {
+const BoxList = ({ isDark, habit, setHabits, setSelectedHabit }: { isDark: boolean, habit: IHabit, setHabits: React.Dispatch<React.SetStateAction<IHabits>>, setSelectedHabit: React.Dispatch<React.SetStateAction<IHabit | null>> }) => {
     const [boxes, setBoxes] = useState<IBoxes>({});
     
     const handleBox: IHandleBox = (id, today, data) => {
@@ -86,8 +86,8 @@ const BoxList = ({ habit, setHabits, setSelectedHabit }: { habit: IHabit, setHab
     
     return (
         <div>
-            <VACBoxList boxes={boxes} />
-            <Timer habit={habit} setTodayBox={setTodayBox} />
+            <VACBoxList isDark={isDark} boxes={boxes} />
+            <Timer isDark={isDark} habit={habit} setTodayBox={setTodayBox} />
         </div>
     );
 };

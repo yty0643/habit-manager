@@ -3,16 +3,18 @@ import { IBoxes } from './box_list';
 import BoxItem from '../box_item/box_item';
 import styles from './box_list.module.css';
 
-const VACBoxList = ({ boxes }: { boxes: IBoxes }) => {
+const VACBoxList = ({ isDark, boxes }: { isDark: boolean, boxes: IBoxes }) => {
     return (
         <ul className={styles.boxList}>
             {Object.keys(boxes).map(key => (
                 <BoxItem
                     key={key}
+                    isDark={isDark}
                     box={boxes[key]}
                 />
             ))}
         </ul>
-    )
-}
+    );
+};
+
 export default React.memo(VACBoxList);

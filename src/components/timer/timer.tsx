@@ -1,9 +1,8 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { IHabit } from '../../pages/main/main';
-import TimerBtn from '../../VAC/timer_btn/timer_btn';
-import TimerTime from '../../VAC/timer_time/timer_time';
+import VACTimer from './VAC_timer';
 
-const Timer = ({ habit, setTodayBox }: { habit: IHabit, setTodayBox: (temp: number, start: string, end: string) => void }) => {
+const Timer = ({ isDark, habit, setTodayBox }: { isDark: boolean, habit: IHabit, setTodayBox: (temp: number, start: string, end: string) => void }) => {
     const [isTimer, setIsTimer] = useState<boolean>(false);
     const [time, setTime] = useState<number>(0);
     const [timeToS, setTimeToS] = useState<string>("00:00:00");
@@ -43,8 +42,7 @@ const Timer = ({ habit, setTodayBox }: { habit: IHabit, setTodayBox: (temp: numb
 
     return (
         <div>
-            <TimerBtn onClick={onClick} />
-            <TimerTime timeToS={timeToS} />
+            <VACTimer isDark={isDark} onClick={onClick} timeToS={timeToS} />
         </div>
     );
 };
