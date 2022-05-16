@@ -82,9 +82,14 @@ const Main = ({ auth, db }: { auth: Auth, db: Database }) => {
                 <Habitlist isDark={isDark} habits={habits} setHabits={setHabits} setSelectedHabit={setSelectedHabit}/>
                 <HabitAddBtn isDark={isDark} habits={habits} setHabits={setHabits}/>
             </div>
+            <div className={`${styles.horizontal} ${isDark && styles.dark}`}></div>
             <div className={`${styles.previewSection} ${isDark && styles.dark}`}>
                 {selectedHabit && <HabitPreivew isDark={isDark} habit={selectedHabit} />}
                 {selectedHabit && <Box habit={selectedHabit} setHabits={setHabits} setSelectedHabit={setSelectedHabit} />}
+            </div>
+            <div className={`${styles.horizontal} ${isDark && styles.dark}`}></div>
+            <div className={`${styles.footer} ${isDark && styles.dark}`}>
+
             </div>
         </div>
     );
