@@ -43,6 +43,13 @@
     padding-top: 0;
 }
 
+.description{
+    margin-bottom: 0.5rem;
+    color: rgb(50, 50, 50);
+}
+.description.dark{
+    color: rgb(230, 230, 230);
+}
 
 .footer{
     display: flex;
@@ -56,3 +63,4 @@
     background-color: rgb(30, 30, 30);
     color: rgb(230, 230, 230);
 }
+

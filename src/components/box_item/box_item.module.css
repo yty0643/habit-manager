@@ -1,7 +1,12 @@
 .box {
   position: relative;
-  width: 17px;
-  height: 17px;
-  border: 2px solid white;
+  width: 16px;
+  height: 16px;
+  border: 3px solid white;
+  background-color: white;
   border-radius: 3px;
+}
+
+.box.dark{
+  border: 3px solid rgb(30, 30, 30);
 }

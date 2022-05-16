@@ -8,7 +8,7 @@ const BoxItem = ({ isDark, box }: { isDark: boolean, box: IBox }) => {
 
     return (
         <div
-            className={styles.box}
+            className={`${styles.box} ${isDark && styles.dark}`}
             style={{ background: box.color }}
             onMouseEnter={() => {
                 setPreview(true);

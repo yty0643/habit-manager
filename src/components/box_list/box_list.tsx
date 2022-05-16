@@ -32,7 +32,7 @@ const BoxList = ({ isDark, habit }: { isDark:boolean, habit: IHabit }) => {
                 date: key,
                 habitTime: habit.boxesJSON && habit.boxesJSON[key]?.habitTime || {},
                 totalTime: habit.boxesJSON && habit.boxesJSON[key]?.totalTime || 0,
-                color: habit.boxesJSON && habit.boxesJSON[key]?.color || "grey", //추후 색상 수정(base color)
+                color: habit.boxesJSON && habit.boxesJSON[key]?.color || "rgba(100, 100, 100, 0.3)", //추후 색상 수정(base color)
             };
         };
         setBoxes(temp);
