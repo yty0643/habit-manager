@@ -77,12 +77,12 @@ const Main = ({ auth, db }: { auth: Auth, db: Database }) => {
                     <SignOutBtn auth={auth} />
                 </div>
             </div>
-            <div className={styles.userSection}>
+            <div className={`${styles.userSection} ${isDark && styles.dark}`}>
                 {user && <User db={db} isDark={isDark} user={user} habits={habits}/>}
                 <Habitlist isDark={isDark} habits={habits} setHabits={setHabits} setSelectedHabit={setSelectedHabit}/>
                 <HabitAddBtn isDark={isDark} habits={habits} setHabits={setHabits}/>
             </div>
-            <div className={styles.previewSection}>
+            <div className={`${styles.previewSection} ${isDark && styles.dark}`}>
                 {selectedHabit && <HabitPreivew isDark={isDark} habit={selectedHabit} />}
                 {selectedHabit && <Box habit={selectedHabit} setHabits={setHabits} setSelectedHabit={setSelectedHabit} />}
             </div>

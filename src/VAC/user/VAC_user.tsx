@@ -8,7 +8,7 @@ import { IInfo, IOnChange } from './user';
 const VACUser = ({ isDark, user, info, img, onChange }: { isDark: boolean, user: IUser, info:IInfo, img: any, onChange: IOnChange }) => {
     return (
         <div className={styles.user}>
-            <label className={styles.profile} htmlFor="ex_file">
+            <label className={`${styles.profile} ${isDark && styles.dark}`} htmlFor="ex_file">
                 <input className={styles.input} type="file" id="ex_file" onChange={onChange} accept=".jpg, .png"/>
                 <img className={styles.img} src={img} />
                 <div className={styles.cover}>

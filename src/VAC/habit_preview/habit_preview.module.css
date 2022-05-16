@@ -5,10 +5,15 @@
     width: 16rem;
     /* height: 10rem; */
     padding: 1.2rem 1rem 0.5rem 1rem;
-    border: 1px solid rgb(200,200,200);
+    border: 2px solid rgb(200,200,200);
     border-radius: 5px;
     color: rgb(50, 50, 50);
 }
+.preview.dark{
+    border: 2px solid rgb(100,100,100);
+    color: rgb(230, 230, 230);
+}
+
 .title{
     display: flex;
     align-items: center;
