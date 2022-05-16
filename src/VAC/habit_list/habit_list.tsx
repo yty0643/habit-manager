@@ -1,6 +1,6 @@
 import React from 'react';
 import { IHabit, IHabits } from '../../pages/main/main';
-import { IBox } from '../../VC/box/box';
+import { IBox } from '../box_list/box_list';
 import VACHabitlist from './VAC_habit_list';
 
 export interface IDelHabit{

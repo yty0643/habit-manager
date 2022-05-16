@@ -1,5 +1,5 @@
 import React from 'react';
-import { IBox } from '../../VC/box/box';
+import { IBox } from '../box_list/box_list';
 import styles from './box_preview.module.css';
 
 const BoxPreview = ({ box }: { box: IBox }) => {

@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './VAC_sign_in_form.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRightToBracket, faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
-import { Iprops } from '../../VC/sign_in_form/sign_in_form';
+import { Iprops } from './sign_in_form';
 
 const VACSignInForm = ({ active, emailRef, passRef, setState, signIn, signUp, emailCheck, passCheck, msg }: Iprops) => {
     return (

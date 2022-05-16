@@ -1,7 +1,7 @@
 import React from 'react';
 import Auth from '../../service/auth';
 import Logo from '../../VAC/logo/logo';
-import SignUpForm from '../../VC/sign_up_form/sign_up_form';
+import SignUpForm from '../../VAC/sign_up_form/sign_up_form';
 import styles from './join.module.css';
 const Join = ({ auth }: { auth: Auth }) => {
     

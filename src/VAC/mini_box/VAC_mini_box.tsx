@@ -1,5 +1,5 @@
 import React from 'react';
-import { IBoxes } from '../../VC/mini_box/mini_box';
+import { IBoxes } from './mini_box';
 import styles from './VAC_mini_box.module.css';
 
 const VACMiniBox = ({ active, boxes}: { active: boolean, boxes:IBoxes}) => {

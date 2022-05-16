@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Auth from '../../service/auth';
-import VACSignInBtn from '../../VAC/VAC_sign_in_btn/VAC_sign_in_btn';
+import VACSignInBtn from './VAC_sign_in_btn';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 
 export interface ISignIn{

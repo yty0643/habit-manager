@@ -9,7 +9,7 @@ import Logo from '../../VAC/logo/logo';
 import SignOutBtn from '../../VAC/sign_out_btn/sign_out_btn';
 import ThemeToggleBtn from '../../VAC/theme_toggle_btn/theme_toggle_btn';
 import User from '../../VAC/user/user';
-import Box, { IBoxes } from '../../VC/box/box';
+import BoxList, { IBoxes } from '../../VAC/box_list/box_list';
 import styles from './main.module.css';
 
 export interface IUser{
@@ -66,6 +66,15 @@ const Main = ({ auth, db }: { auth: Auth, db: Database }) => {
         db.write(user.email, `user/${user.email}/habits/`, habits);
     }, [habits]);
 
+
+    // const delHabit: IDelHabit = (habit) => {
+    //     setHabits(habits => {
+    //         const temp = { ...habits };
+    //         delete temp[habit.id];
+    //         return temp;
+    //     });
+    // };
+
     return (
         <div className={`${styles.main} ${isDark && styles.dark}`}>
             <div className={styles.header}>
@@ -82,14 +91,12 @@ const Main = ({ auth, db }: { auth: Auth, db: Database }) => {
                 <Habitlist isDark={isDark} habits={habits} setHabits={setHabits} setSelectedHabit={setSelectedHabit}/>
                 <HabitAddBtn isDark={isDark} habits={habits} setHabits={setHabits}/>
             </div>
-            <div className={`${styles.horizontal} ${isDark && styles.dark}`}></div>
             <div className={`${styles.previewSection} ${isDark && styles.dark}`}>
                 {selectedHabit && <HabitPreivew isDark={isDark} habit={selectedHabit} />}
-                {selectedHabit && <Box habit={selectedHabit} setHabits={setHabits} setSelectedHabit={setSelectedHabit} />}
+                {selectedHabit && <BoxList habit={selectedHabit} setHabits={setHabits} setSelectedHabit={setSelectedHabit} />}
             </div>
-            <div className={`${styles.horizontal} ${isDark && styles.dark}`}></div>
             <div className={`${styles.footer} ${isDark && styles.dark}`}>
-
+                dd
             </div>
         </div>
     );

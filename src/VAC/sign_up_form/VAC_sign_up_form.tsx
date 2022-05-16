@@ -1,5 +1,5 @@
 import React from 'react';
-import { IProps } from '../../VC/sign_up_form/sign_up_form';
+import { IProps } from './sign_up_form';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import styles from './VAC_sign_up_form.module.css';

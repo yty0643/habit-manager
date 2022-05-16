@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { IBox } from '../../VC/box/box';
+import { IBox } from '../box_list/box_list';
 import BoxPreview from '../box_preview/box_preview';
 import styles from './box_item.module.css';
 

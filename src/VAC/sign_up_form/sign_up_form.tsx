@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Auth from '../../service/auth';
-import VACSignUpForm from '../../VAC/VAC_sign_up_form/VAC_sign_up_form';
+import VACSignUpForm from './VAC_sign_up_form';
 
 
 export interface IProps{

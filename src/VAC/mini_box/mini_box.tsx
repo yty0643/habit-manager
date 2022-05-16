@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import VACMiniBox from '../../VAC/VAC_mini_box/VAC_mini_box';
+import VACMiniBox from './VAC_mini_box';
 
 export interface IBoxes {
     [key: number]: { bgColor: string }

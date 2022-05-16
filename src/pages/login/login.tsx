@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import Auth from '../../service/auth';
-import SignInBtn from '../../VC/sign_in_btn/sign_in_btn';
-import SignInForm from '../../VC/sign_in_form/sign_in_form';
+import SignInBtn from '../../VAC/sign_in_btn/sign_in_btn';
+import SignInForm from '../../VAC/sign_in_form/sign_in_form';
 import styles from './login.module.css';
 import { faGithub, faGoogle } from '@fortawesome/free-brands-svg-icons';
-import Info from '../../VC/info/info';
+import Info from '../../VAC/info/info';
 import LinkBtn from '../../VAC/link_btn/link_btn';
 import Separator from '../../VAC/separator/separator';
-import MiniBox from '../../VC/mini_box/mini_box';
+import MiniBox from '../../VAC/mini_box/mini_box';
 
 
 const Login = ({ auth }: { auth: Auth }) => {
