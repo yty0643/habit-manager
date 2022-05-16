@@ -19,7 +19,7 @@ export interface IHandleBox{
     (id: number, today: string, boxes: IBox): void;
 };
 
-const Box = ({ habit, setHabits }: { habit: IHabit, setHabits: React.Dispatch<React.SetStateAction<IHabits>> }) => {
+const Box = ({ habit, setHabits, setSelectedHabit }: { habit: IHabit, setHabits: React.Dispatch<React.SetStateAction<IHabits>>, setSelectedHabit: React.Dispatch<React.SetStateAction<IHabit | null>> }) => {
     const [boxes, setBoxes] = useState<IBoxes>({});
     
     const handleBox: IHandleBox = (id, today, data) => {
@@ -28,6 +28,7 @@ const Box = ({ habit, setHabits }: { habit: IHabit, setHabits: React.Dispatch<Re
             const todayTemp = { ...temp[id].boxesJSON }
             todayTemp[today] = data;
             temp[id].boxesJSON = todayTemp;
+            setSelectedHabit({ ...temp[id] });
             return temp;
         });
     };
@@ -86,7 +87,7 @@ const Box = ({ habit, setHabits }: { habit: IHabit, setHabits: React.Dispatch<Re
     return (
         <div>
             <BoxList boxes={boxes} />
-            <Timer setTodayBox={setTodayBox} />
+            <Timer habit={habit} setTodayBox={setTodayBox} />
         </div>
     );
 };

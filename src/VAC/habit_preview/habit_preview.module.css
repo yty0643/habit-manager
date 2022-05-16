@@ -1,0 +1,51 @@
+.preview{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 16rem;
+    /* height: 10rem; */
+    padding: 1.2rem 1rem 0.5rem 1rem;
+    border: 1px solid rgb(200,200,200);
+    border-radius: 5px;
+    color: rgb(50, 50, 50);
+}
+.title{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 0.5rem;
+}
+
+.information{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    font-size: 0.8rem;
+    font-weight: 300;
+}
+
+.box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.name,
+.goal,
+.description{
+    margin-left: 0.5rem;
+}
+
+.memo{
+    margin-bottom: 0.5rem;    
+}
+
+.value{
+    font-weight: 500;
+}
+
+.since{
+    margin-left: auto;
+}

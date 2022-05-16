@@ -27,7 +27,8 @@ const HabitAddForm = ({ isDark, habits, setIsActive, setHabits }: { isDark: bool
             name: name,
             description: description,
             goal: goal,
-            boxesJSON: {},
+            boxesJSON: null,
+            since: new Date().toISOString().split('T')[0],
         };
         console.log(newHabit);
         setHabits(habits => {

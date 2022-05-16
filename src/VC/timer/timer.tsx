@@ -1,8 +1,9 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { IHabit } from '../../pages/main/main';
 import TimerBtn from '../../VAC/timer_btn/timer_btn';
 import TimerTime from '../../VAC/timer_time/timer_time';
 
-const Timer = ({ setTodayBox }: { setTodayBox: (temp: number, start: string, end: string) => void }) => {
+const Timer = ({ habit, setTodayBox }: { habit: IHabit, setTodayBox: (temp: number, start: string, end: string) => void }) => {
     const [isTimer, setIsTimer] = useState<boolean>(false);
     const [time, setTime] = useState<number>(0);
     const [timeToS, setTimeToS] = useState<string>("00:00:00");
@@ -31,6 +32,10 @@ const Timer = ({ setTodayBox }: { setTodayBox: (temp: number, start: string, end
         const s: string = (temp % 3600 % 60).toString().padStart(2, '0');
         return `${h}:${m}:${s}`;
     }, []);
+
+    useEffect(() => {
+        setTime(habit.boxesJSON ? habit.boxesJSON[new Date().toISOString().split('T')[0]].totalTime : 0);
+    }, [habit]);
 
     useEffect(() => {
         setTimeToS(timer(time));

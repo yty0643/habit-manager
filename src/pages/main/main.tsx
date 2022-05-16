@@ -23,7 +23,8 @@ export interface IHabit{
     name: string,
     description: string,
     goal: string,
-    boxesJSON: IBoxes,
+    boxesJSON: IBoxes|null,
+    since: string,
 };
 
 export interface IHabits{
@@ -82,8 +83,8 @@ const Main = ({ auth, db }: { auth: Auth, db: Database }) => {
                 <HabitAddBtn isDark={isDark} habits={habits} setHabits={setHabits}/>
             </div>
             <div className={styles.previewSection}>
-                {selectedHabit && <HabitPreivew habit={selectedHabit} />}
-                {selectedHabit && <Box habit={selectedHabit} setHabits={setHabits} />}
+                {selectedHabit && <HabitPreivew isDark={isDark} habit={selectedHabit} />}
+                {selectedHabit && <Box habit={selectedHabit} setHabits={setHabits} setSelectedHabit={setSelectedHabit} />}
             </div>
         </div>
     );
