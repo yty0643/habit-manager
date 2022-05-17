@@ -8,7 +8,12 @@ export interface IOnClick{
 
 const HabitDelBtn = ({ isDark, habit, setHabits, setSelectedHabit }: { isDark: boolean, habit: IHabit, setHabits: React.Dispatch<React.SetStateAction<IHabits>>, setSelectedHabit: React.Dispatch<React.SetStateAction<IHabit | null>> }) => {
     const onClick: IOnClick = () => {
-        console.log("delete");
+        setHabits(habits => {
+            const temp = { ...habits };
+            delete temp[habit.id]
+            setSelectedHabit(null);
+            return temp;
+        })
     };
 
     return (
