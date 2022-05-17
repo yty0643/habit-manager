@@ -38,7 +38,7 @@ const Main = ({ auth, db }: { auth: Auth, db: Database }) => {
     const [isDark, setIsDark] = useState<boolean>(false);
     const [user, setUser] = useState<IUser>();
     const [habits, setHabits] = useState<IHabits>({});
-    const [selectedHabit, setSelectedHabit] = useState<IHabit|null>(null);
+    const [selectedHabit, setSelectedHabit] = useState<IHabit | null>(null);
 
     useEffect(() => {
         auth
@@ -72,35 +72,42 @@ const Main = ({ auth, db }: { auth: Auth, db: Database }) => {
         <div className={`${styles.main} ${isDark && styles.dark}`}>
             <div className={styles.header}>
                 <div>
-                    <Logo isDark={true}/>
+                    <Logo isDark={true} />
                 </div>
                 <div className={styles.btns}>
-                    <ThemeToggleBtn isDark={isDark} setIsDark={setIsDark}/>
+                    <ThemeToggleBtn isDark={isDark} setIsDark={setIsDark} />
                     <SignOutBtn auth={auth} />
                 </div>
             </div>
             <div className={`${styles.userSection} ${isDark && styles.dark}`}>
-                {user && <User db={db} isDark={isDark} user={user} habits={habits}/>}
-                <Habitlist isDark={isDark} habits={habits} setSelectedHabit={setSelectedHabit}/>
-                <HabitAddBtn isDark={isDark} habits={habits} setHabits={setHabits}/>
+                {user && <User db={db} isDark={isDark} user={user} habits={habits} />}
+                <Habitlist isDark={isDark} habits={habits} setSelectedHabit={setSelectedHabit} />
+                <HabitAddBtn isDark={isDark} habits={habits} setHabits={setHabits} />
             </div>
-            <div className={`${styles.previewSection} ${isDark && styles.dark}`}>
-                {selectedHabit &&
-                    <div>
-                        <p className={`${styles.description} ${isDark && styles.dark}`}>Detail</p>
-                        <div className={styles.titleBox}>
-                            <HabitPreivew isDark={isDark} habit={selectedHabit} />
-                            <Timer isDark={isDark} habit={selectedHabit} setHabits={setHabits} setSelectedHabit={setSelectedHabit} />
-                            <HabitDelBtn isDark={isDark} habit={selectedHabit} setHabits={setHabits} setSelectedHabit={setSelectedHabit}/>
-                        </div>
-                        <p className={`${styles.description} ${isDark && styles.dark}`}>Records in last year</p>
-                        <BoxList isDark={isDark} habit={selectedHabit} />
-                        <p className={`${styles.description} ${isDark && styles.dark}`}>activity</p>
-                        <ActivityList isDark={isDark} habit={selectedHabit}/>
-                    </div>}
-            </div>
+            {selectedHabit && <div className={`${styles.previewSection} ${isDark && styles.dark}`}>
+                <div>
+                    <p className={`${styles.description} ${isDark && styles.dark}`}>Detail</p>
+                    <div className={styles.titleBox}>
+                        <HabitPreivew isDark={isDark} habit={selectedHabit} />
+                        <Timer isDark={isDark} habit={selectedHabit} setHabits={setHabits} setSelectedHabit={setSelectedHabit} />
+                        <HabitDelBtn isDark={isDark} habit={selectedHabit} setHabits={setHabits} setSelectedHabit={setSelectedHabit} />
+                    </div>
+                    <p className={`${styles.description} ${isDark && styles.dark}`}>Records in last year</p>
+                    <BoxList isDark={isDark} habit={selectedHabit} />
+                    <p className={`${styles.description} ${isDark && styles.dark}`}>activity</p>
+                    <ActivityList isDark={isDark} habit={selectedHabit} />
+                </div>
+            </div>}
             <div className={`${styles.footer} ${isDark && styles.dark}`}>
-                footer
+                <a className={styles.link} href="https://github.com/yty0643" target="_blank">
+                    GitHub
+                </a>
+                <a className={styles.link} href="https://github.com/yty0643/habit-manager" target="_blank">
+                    Docs
+                </a>
+                <p className={styles.contact}>
+                    Contact me!
+                </p>
             </div>
         </div>
     );

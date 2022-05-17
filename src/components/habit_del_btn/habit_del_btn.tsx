@@ -13,7 +13,7 @@ const HabitDelBtn = ({ isDark, habit, setHabits, setSelectedHabit }: { isDark: b
             delete temp[habit.id]
             setSelectedHabit(null);
             return temp;
-        })
+        });
     };
 
     return (

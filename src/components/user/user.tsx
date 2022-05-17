@@ -34,10 +34,11 @@ const User = ({ db, isDark, user, habits }: { db: Database, isDark: boolean, use
         db
             .read(user.email, `user/${user.email}/info`)
             .then(res => {
+                if (!res) throw new Error("No data available");
                 setImg(res.img);
             })
             .catch((error) => {
-                // console.log(error);
+                 
             });
     }, []);
 

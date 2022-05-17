@@ -1,4 +1,5 @@
 import { ref, update, child, get, getDatabase } from 'firebase/database';
+import { resolve } from 'path';
 import { db } from './firebase';
 
 class Database{
@@ -16,7 +17,7 @@ class Database{
                 if (snapshot.exists()) {
                     return(snapshot.val());
                 } else {
-                    throw new Error("No data available");
+                    return false;
                 }
             })
     };
