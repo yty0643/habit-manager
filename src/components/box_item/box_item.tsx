@@ -17,7 +17,7 @@ const BoxItem = ({ isDark, box }: { isDark: boolean, box: IBox }) => {
                 setPreview(false);
             }}
         >
-            {preview && <BoxPreview box={box} />}
+            {preview && <BoxPreview isDark={isDark} box={box} />}
         </div>
     );
 };

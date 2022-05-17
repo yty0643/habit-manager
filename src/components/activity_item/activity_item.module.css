@@ -1,0 +1,61 @@
+.section{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 30rem;
+    border: 2px solid rgb(200,200,200);
+    border-radius: 5px;
+    margin-bottom: 2rem;
+    padding: 1.2rem 1rem 0.5rem 1rem;
+    color: rgb(50, 50, 50);
+    font-weight: 300;
+    font-size: 0.8rem;
+}
+.section.dark{
+    border: 2px solid rgb(100,100,100);
+    color: rgb(230,230,230);
+}
+
+.description{
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.value{
+    margin: 0 7px;
+    font-weight: 500;
+}
+.icon{
+    margin-right: 5px;
+    font-size: 1rem;
+}
+.date{
+    position: absolute;
+    top: 0;
+    left: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 0 5px 4px 5px;
+    background-color: white;
+    transform: translateY(-50%);
+}
+.date.dark{
+    background-color: rgb(30, 30, 30);
+}
+
+.box{
+    display: flex;
+}
+
+.start,
+.end{
+    display: flex;
+    flex-direction: column;
+    margin-right: 7px;
+}
+.start{
+}

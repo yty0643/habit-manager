@@ -30,7 +30,6 @@ const HabitAddForm = ({ isDark, habits, setIsActive, setHabits }: { isDark: bool
             boxesJSON: null,
             since: new Date().toISOString().split('T')[0],
         };
-        console.log(newHabit);
         setHabits(habits => {
             const temp = { ...habits };
             temp[newHabit.id] = newHabit;

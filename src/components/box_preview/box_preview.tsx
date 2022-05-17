@@ -2,18 +2,12 @@ import React from 'react';
 import { IBox } from '../box_list/box_list';
 import styles from './box_preview.module.css';
 
-const BoxPreview = ({ box }: { box: IBox }) => {
-
+const BoxPreview = ({ isDark, box }: { isDark: boolean, box: IBox }) => {
     return (
         <div className={styles.preview}>
-            <p>{Object.keys(box.habitTime).length}</p>
-            <p>{box.date}</p>
-            {Object.keys(box.habitTime).map(key => {
-                return (
-                    <p key={key}>{box.habitTime[Number(key)]}</p>
-                )
-            })}
-            <p>{box.totalTime}</p>
+            <p className={styles.value}>{Object.keys(box.habitTime).length}</p>
+            <p className={styles.description}>records in</p>
+            <p className={styles.value}>{box.date}</p>
         </div>
     )
 }

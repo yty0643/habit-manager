@@ -23,7 +23,6 @@ const User = ({ db, isDark, user, habits }: { db: Database, isDark: boolean, use
         if (!event.target.files.length) return;
         const file = event.target.files[0];
         if (!(file.name.split('.')[1] == 'jpg' || file.name.split('.')[1] == 'png')) return;
-        console.log(file);
         const fileReader = new FileReader();
         fileReader.onloadend = () => {
             setImg(fileReader.result);

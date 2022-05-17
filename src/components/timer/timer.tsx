@@ -11,7 +11,6 @@ const Timer = ({ isDark, habit, setHabits, setSelectedHabit }: { isDark: boolean
 
     const onClick = () => {
         if (isTimer) {
-            console.log("stop");
             clearInterval(interval.current!);
             setHabits((habits) => {
                 const endTime = new Date().toTimeString().split(' ')[0];
@@ -28,14 +27,12 @@ const Timer = ({ isDark, habit, setHabits, setSelectedHabit }: { isDark: boolean
                     totalTime: time,
                     color: colorSelector(time),
                 }
-                console.log(boxesJSON[today]);
                 temp[habit.id].boxesJSON = boxesJSON;
                 setSelectedHabit({...temp[habit.id]});
                 return temp;
             })
             setIsTimer(false);
         } else {
-            console.log("start");
             interval.current = setInterval(() => {
                 setTime(time => time + 1000);
             }, 1000)

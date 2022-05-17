@@ -12,6 +12,7 @@ import User from '../../components/user/user';
 import BoxList, { IBoxes } from '../../components/box_list/box_list';
 import styles from './main.module.css';
 import Timer from '../../components/timer/timer';
+import ActivityList from '../../components/activity_list/activity_list';
 
 export interface IUser{
     email: string,
@@ -99,6 +100,8 @@ const Main = ({ auth, db }: { auth: Auth, db: Database }) => {
                     <HabitPreivew isDark={isDark} habit={selectedHabit} />
                     <p className={`${styles.description} ${isDark && styles.dark}`}>Records in last year</p>
                     <BoxList isDark={isDark} habit={selectedHabit} />
+                    <p className={`${styles.description} ${isDark && styles.dark}`}>activity</p>
+                    <ActivityList isDark={isDark} habit={selectedHabit}/>
                 </div>}
             </div>
             <div className={`${styles.footer} ${isDark && styles.dark}`}>
