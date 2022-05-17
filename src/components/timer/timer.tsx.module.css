@@ -5,7 +5,7 @@
     height: 3rem;
     border-radius: 5px;
     color: rgb(50, 50, 50);
-    transform: translateY(3rem);
+    /* transform: translateY(3rem); */
 }
 .timer.dark{
     color: rgb(230, 230, 230);

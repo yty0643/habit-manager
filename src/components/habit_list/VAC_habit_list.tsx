@@ -2,9 +2,9 @@ import React from 'react';
 import HabitItem from '../habit_item/habit_item';
 import { IHabits } from '../../pages/main/main';
 import styles from './habit_list.module.css';
-import { IDelHabit, IHandleBox, IonClick } from './habit_list';
+import { IonClick } from './habit_list';
 
-const VACHabitlist = ({ isDark, habits, delHabit, onClick, handleBox }: { isDark: boolean, habits: IHabits, delHabit: IDelHabit, onClick: IonClick, handleBox: IHandleBox }) => {
+const VACHabitlist = ({ isDark, habits, onClick }: { isDark: boolean, habits: IHabits, onClick: IonClick }) => {
     return (
         <ul className={styles.habits}>
             {Object.keys(habits).map(key => {
@@ -12,10 +12,8 @@ const VACHabitlist = ({ isDark, habits, delHabit, onClick, handleBox }: { isDark
                     <HabitItem
                         key={key}
                         isDark={isDark}
-                        habit={habits[Number(key)]}
-                        delHabit={delHabit}
-                        onClick={onClick}
-                        handleBox={handleBox} />
+                        habit={habits[Number(key)]}                   
+                        onClick={onClick} />
                 )
             })}
         </ul>

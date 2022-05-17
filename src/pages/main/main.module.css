@@ -39,16 +39,17 @@
     border-bottom: 1px solid rgb(100, 100, 100);
 }
 
-.previewSection{
-    padding-top: 0;
-}
-
 .description{
     margin-bottom: 0.5rem;
     color: rgb(50, 50, 50);
 }
 .description.dark{
     color: rgb(230, 230, 230);
+}
+
+.titleBox{
+    display: flex;
+    justify-content: space-between;
 }
 
 .footer{

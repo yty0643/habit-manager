@@ -13,12 +13,12 @@ import BoxList, { IBoxes } from '../../components/box_list/box_list';
 import styles from './main.module.css';
 import Timer from '../../components/timer/timer';
 import ActivityList from '../../components/activity_list/activity_list';
+import HabitDelBtn from '../../components/habit_del_btn/habit_del_btn';
 
 export interface IUser{
     email: string,
     name: string
 };
-
 
 export interface IHabit{
     id: number,
@@ -68,15 +68,6 @@ const Main = ({ auth, db }: { auth: Auth, db: Database }) => {
         db.write(user.email, `user/${user.email}/habits/`, habits);
     }, [habits]);
 
-
-    // const delHabit: IDelHabit = (habit) => {
-    //     setHabits(habits => {
-    //         const temp = { ...habits };
-    //         delete temp[habit.id];
-    //         return temp;
-    //     });
-    // };
-
     return (
         <div className={`${styles.main} ${isDark && styles.dark}`}>
             <div className={styles.header}>
@@ -90,19 +81,23 @@ const Main = ({ auth, db }: { auth: Auth, db: Database }) => {
             </div>
             <div className={`${styles.userSection} ${isDark && styles.dark}`}>
                 {user && <User db={db} isDark={isDark} user={user} habits={habits}/>}
-                <Habitlist isDark={isDark} habits={habits} setHabits={setHabits} setSelectedHabit={setSelectedHabit}/>
+                <Habitlist isDark={isDark} habits={habits} setSelectedHabit={setSelectedHabit}/>
                 <HabitAddBtn isDark={isDark} habits={habits} setHabits={setHabits}/>
             </div>
             <div className={`${styles.previewSection} ${isDark && styles.dark}`}>
-                {selectedHabit && <div>
-                    <Timer isDark={isDark} habit={selectedHabit} setHabits={setHabits} setSelectedHabit={setSelectedHabit} />
-                    <p className={`${styles.description} ${isDark && styles.dark}`}>Detail</p>
-                    <HabitPreivew isDark={isDark} habit={selectedHabit} />
-                    <p className={`${styles.description} ${isDark && styles.dark}`}>Records in last year</p>
-                    <BoxList isDark={isDark} habit={selectedHabit} />
-                    <p className={`${styles.description} ${isDark && styles.dark}`}>activity</p>
-                    <ActivityList isDark={isDark} habit={selectedHabit}/>
-                </div>}
+                {selectedHabit &&
+                    <div>
+                        <p className={`${styles.description} ${isDark && styles.dark}`}>Detail</p>
+                        <div className={styles.titleBox}>
+                            <HabitPreivew isDark={isDark} habit={selectedHabit} />
+                            <Timer isDark={isDark} habit={selectedHabit} setHabits={setHabits} setSelectedHabit={setSelectedHabit} />
+                            <HabitDelBtn isDark={isDark} habit={selectedHabit} setHabits={setHabits} setSelectedHabit={setSelectedHabit}/>
+                        </div>
+                        <p className={`${styles.description} ${isDark && styles.dark}`}>Records in last year</p>
+                        <BoxList isDark={isDark} habit={selectedHabit} />
+                        <p className={`${styles.description} ${isDark && styles.dark}`}>activity</p>
+                        <ActivityList isDark={isDark} habit={selectedHabit}/>
+                    </div>}
             </div>
             <div className={`${styles.footer} ${isDark && styles.dark}`}>
                 footer
