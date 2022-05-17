@@ -18,4 +18,4 @@ const HabitList = ({ isDark, habits, setSelectedHabit }: { isDark: boolean, habi
     );
 };
 
-export default HabitList;
+export default React.memo(HabitList);

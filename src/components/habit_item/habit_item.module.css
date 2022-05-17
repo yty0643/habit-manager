@@ -4,6 +4,7 @@
     align-items: center;
     justify-content: center;
     margin: 0 1rem 1rem 0;
+    width: 3rem;
     color: rgb(50, 50, 50);
 }
 .item.dark{
@@ -38,6 +39,12 @@
 
 .description{
     margin-top: 3px;
+    width: 4rem;
+    height: 1.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: center;
 }
 
 

@@ -47,4 +47,4 @@ const BoxList = ({ isDark, habit }: { isDark:boolean, habit: IHabit }) => {
     );
 };
 
-export default BoxList;
+export default React.memo(BoxList);

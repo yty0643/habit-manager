@@ -2,6 +2,7 @@ import React from 'react';
 import { IHabit } from '../../pages/main/main';
 import ActivityItem from '../activity_item/activity_item';
 import styles from './activity_list.module.css';
+
 const ActivityList = ({ isDark, habit }: { isDark: boolean, habit: IHabit }) => {
 
     return (
@@ -18,4 +19,4 @@ const ActivityList = ({ isDark, habit }: { isDark: boolean, habit: IHabit }) => 
     );
 };
 
-export default ActivityList;
+export default React.memo(ActivityList);

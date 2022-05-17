@@ -16,3 +16,9 @@
     border: 1px solid white;
     background-color: rgb(155, 50, 50);
 }
+
+@media screen and (max-width: 48rem) {
+    .container{
+        opacity: 1;
+    }
+}

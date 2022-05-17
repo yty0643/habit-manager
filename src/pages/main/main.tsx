@@ -39,7 +39,7 @@ const Main = ({ auth, db }: { auth: Auth, db: Database }) => {
     const [user, setUser] = useState<IUser>();
     const [habits, setHabits] = useState<IHabits>({});
     const [selectedHabit, setSelectedHabit] = useState<IHabit | null>(null);
-
+    
     useEffect(() => {
         auth
             .getUser()
@@ -85,17 +85,15 @@ const Main = ({ auth, db }: { auth: Auth, db: Database }) => {
                 <HabitAddBtn isDark={isDark} habits={habits} setHabits={setHabits} />
             </div>
             {selectedHabit && <div className={`${styles.previewSection} ${isDark && styles.dark}`}>
-                <div>
+                <div className={styles.previewSection2}>
+                    <Timer isDark={isDark} habit={selectedHabit} setHabits={setHabits} setSelectedHabit={setSelectedHabit} />
                     <p className={`${styles.description} ${isDark && styles.dark}`}>Detail</p>
-                    <div className={styles.titleBox}>
-                        <HabitPreivew isDark={isDark} habit={selectedHabit} />
-                        <Timer isDark={isDark} habit={selectedHabit} setHabits={setHabits} setSelectedHabit={setSelectedHabit} />
-                        <HabitDelBtn isDark={isDark} habit={selectedHabit} setHabits={setHabits} setSelectedHabit={setSelectedHabit} />
-                    </div>
+                    <HabitPreivew isDark={isDark} habit={selectedHabit} />
                     <p className={`${styles.description} ${isDark && styles.dark}`}>Records in last year</p>
                     <BoxList isDark={isDark} habit={selectedHabit} />
                     <p className={`${styles.description} ${isDark && styles.dark}`}>activity</p>
                     <ActivityList isDark={isDark} habit={selectedHabit} />
+                    <HabitDelBtn isDark={isDark} habit={selectedHabit} setHabits={setHabits} setSelectedHabit={setSelectedHabit} />
                 </div>
             </div>}
             <div className={`${styles.footer} ${isDark && styles.dark}`}>

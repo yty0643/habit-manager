@@ -39,17 +39,18 @@
     border-bottom: 1px solid rgb(100, 100, 100);
 }
 
+.previewSection2{
+    /* margin:auto; */
+    width: 80%;
+    max-width: 56rem;
+}
+
 .description{
     margin-bottom: 0.5rem;
     color: rgb(50, 50, 50);
 }
 .description.dark{
     color: rgb(230, 230, 230);
-}
-
-.titleBox{
-    display: flex;
-    justify-content: space-between;
 }
 
 .footer{
@@ -72,4 +73,17 @@
     font-weight: 300;
     font-size: 0.8rem;
     margin-right: 2rem;
+}
+
+.contact{
+    margin-right: 0;
+}
+
+@media screen and (max-width: 60rem) {
+    .titleBox{
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: space-between;
+        align-items: center;
+    }
 }

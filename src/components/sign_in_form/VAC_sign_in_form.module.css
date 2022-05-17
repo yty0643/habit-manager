@@ -60,3 +60,15 @@
 .signUp:hover{
     border-bottom: 1px dotted rgb(74, 74, 240);
 }
+
+@media screen and (max-width: 48rem) {
+    .signUp{
+        width: auto;
+        color:rgb(106, 106, 237);
+    }
+
+    .email,
+    .pass{
+        border-bottom: 1px solid rgb(100, 100, 100);
+    }
+}

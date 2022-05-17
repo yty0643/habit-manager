@@ -1,6 +1,7 @@
 .login{
     display: flex;
     align-items: center;
+    justify-content: center;
     width: 25rem;
     height: 18rem;
     border: 1px solid rgb(210, 210, 210);
@@ -35,3 +36,28 @@
     flex: 1 1 62%;
 }
 
+@media screen and (max-width: 48rem) {
+    .login{
+        width: 90%;
+        height: 90%;
+        padding: 1rem;
+        flex-direction: column-reverse;
+    }
+
+    .vertical{
+        padding: 1px 0;
+        width: 85%;
+        height: 0.5px;
+        background-color: rgb(210, 210, 210);
+    }
+
+    .l,
+    .r{
+        flex: 1 1 50%;
+    }
+    
+    .l:hover,
+    .r:hover{
+        flex: 1 1 50%;
+    }
+}

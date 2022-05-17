@@ -32,4 +32,4 @@ const ActivityItem = ({ isDark, date, item }: { isDark: boolean, date: string, i
     );
 };
 
-export default ActivityItem;
+export default React.memo(ActivityItem);
