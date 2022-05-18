@@ -56,6 +56,7 @@ type관리를 위해 `typescript`를 활용하여 개발하고자 한다.
 ## Main
 
 <img src="https://user-images.githubusercontent.com/80657819/168955822-e2bf005c-8610-4270-8ba1-68d23c63083e.png" width="450px"/>
+<img src="https://user-images.githubusercontent.com/80657819/168958964-b8c7c66a-bfb2-42f4-af70-520f237e2197.png" width="450px"/>
 <img src="https://user-images.githubusercontent.com/80657819/168955820-22bb2d1b-70ab-4c84-8261-3eaab4a039ff.png" width="200px"/>
 
 ---
