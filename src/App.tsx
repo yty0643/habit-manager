@@ -9,7 +9,7 @@ import Join from './pages/join/join';
 function App({ auth, db }:{auth: Auth, db: Database}) {
   return (
     <div className={styles.app}>
-      <BrowserRouter>
+      <BrowserRouter basename='/habit-manager/'>
         <Routes>
           <Route path="/" element={<Login auth={auth} />} />
           <Route path="/join" element={<Join auth={auth} />} />
