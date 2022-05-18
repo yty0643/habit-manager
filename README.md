@@ -45,7 +45,7 @@ type관리를 위해 `typescript`를 활용하여 개발하고자 한다.
 
 ## Login
 
-<img src="[/path/to/img.jpg](https://user-images.githubusercontent.com/80657819/168954406-e098f5c0-3237-469e-ab49-8f280d992af7.png)" width="450px"/>
+<img src="https://user-images.githubusercontent.com/80657819/168954406-e098f5c0-3237-469e-ab49-8f280d992af7.png" width="450px"/>
 ![mobile_join](https://user-images.githubusercontent.com/80657819/168954438-ba8b626c-69dc-4818-99c8-a4f5be31503a.png)
 
 ## Join
