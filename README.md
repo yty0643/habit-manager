@@ -41,6 +41,19 @@ type관리를 위해 `typescript`를 활용하여 개발하고자 한다.
 
 ---
 
+# 화면 구성
+
+## Login
+
+![join](https://user-images.githubusercontent.com/80657819/168954406-e098f5c0-3237-469e-ab49-8f280d992af7.png)
+![mobile_join](https://user-images.githubusercontent.com/80657819/168954438-ba8b626c-69dc-4818-99c8-a4f5be31503a.png)
+
+## Join
+
+## Main
+
+---
+
 # 문제 해결 과정
 
 처음 다루는 툴이 많다 보니 프로젝트 개발 중에 여러 문제가 발생하고 있다. 그 중 중요하다고 생각되는 문제는 해결 과정을 기록하고자 한다.
