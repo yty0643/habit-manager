@@ -1,19 +1,6 @@
 # Habit-manager
 
-<img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=TypeScript&logoColor=white"/>
-<img src="https://img.shields.io/badge/React-61DAFB?style=flat&logo=React&logoColor=white"/>
-<img src="https://img.shields.io/badge/Firebase-FFCA28?style=flat&logo=Firebase&logoColor=white"/>
-<img src="https://img.shields.io/badge/FontAwesome-528DD7?style=flat&logo=FontAwesome&logoColor=white"/>
-
----
-
-# 활용한 기술
-
-- React
-- Typescript
-- Firebase
-- FontAwesome
-- VAC design-pattern
+<img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=TypeScript&logoColor=white"/><img src="https://img.shields.io/badge/React-61DAFB?style=flat&logo=React&logoColor=white"/><img src="https://img.shields.io/badge/Firebase-FFCA28?style=flat&logo=Firebase&logoColor=white"/><img src="https://img.shields.io/badge/FontAwesome-528DD7?style=flat&logo=FontAwesome&logoColor=white"/>
 
 ---
 
@@ -24,6 +11,14 @@ FE개발 역량 강화
 어플리케이션의 원활한 유지보수와 디자이너, FE개발자 간의 원활한 협업(코드 충돌 방지)을 위해 여러 디자인 패턴 중 `VAC`를 참고하여 설계하고자 한다.
 type관리를 위해 `typescript`를 활용하여 개발하고자 한다.
 
+> 사용 툴
+>
+> - React
+> - Typescript
+> - Firebase
+> - FontAwesome
+> - VAC design-pattern
+>
 > 개발 문서 <https://github.com/yty0643/development-documents>
 
 ---
