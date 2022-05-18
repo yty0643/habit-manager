@@ -50,7 +50,7 @@ const Timer = ({ isDark, habit, setHabits, setSelectedHabit }: { isDark: boolean
     }, []);
 
     const colorSelector: (temp: number) => string = (temp) => {
-        temp /= 1;
+        temp /= 1000;
         const hour: number = 3600;
         if (temp < (2 * hour)) return "rgba(0, 255, 0, 0.25)"; // 추후 색상 수정
         else if (temp < (4 * hour)) return "rgba(0, 255, 0, 0.5)";
