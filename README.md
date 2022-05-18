@@ -1,5 +1,20 @@
 # Habit-manager
 
+<img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=TypeScript&logoColor=white"/>
+<img src="https://img.shields.io/badge/React-61DAFB?style=flat&logo=React&logoColor=white"/>
+<img src="https://img.shields.io/badge/Firebase-FFCA28?style=flat&logo=Firebase&logoColor=white"/>
+<img src="https://img.shields.io/badge/FontAwesome-528DD7?style=flat&logo=FontAwesome&logoColor=white"/>
+
+---
+
+# 활용한 기술
+
+- React
+- Typescript
+- Firebase
+- FontAwesome
+- VAC design-pattern
+
 ---
 
 # 프로젝트 개획 이유
@@ -10,6 +25,12 @@ FE개발 역량 강화
 type관리를 위해 `typescript`를 활용하여 개발하고자 한다.
 
 > 개발 문서 <https://github.com/yty0643/development-documents>
+
+---
+
+# 프로젝트 주제
+
+웹을 통해 공부나 운동 등 자기개발과 관련된 일들을 기록하고 관리하자
 
 ---
 

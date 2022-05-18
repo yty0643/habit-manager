@@ -61,7 +61,10 @@ const Timer = ({ isDark, habit, setHabits, setSelectedHabit }: { isDark: boolean
     useEffect(() => {
         if (habit.boxesJSON) {
             const today = new Date().toISOString().split('T')[0];
-            setTime(habit.boxesJSON[today].totalTime);
+            if (habit.boxesJSON[today])
+                setTime(habit.boxesJSON[today].totalTime);
+            else
+                setTime(0);
         } else {
             setTime(0);
         }
