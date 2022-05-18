@@ -50,6 +50,9 @@ type관리를 위해 `typescript`를 활용하여 개발하고자 한다.
 
 ## Join
 
+<img src="https://user-images.githubusercontent.com/80657819/168955436-ceee29a4-2546-4b13-91d8-8fdea9eda235.png" width="450px"/>
+<img src="https://user-images.githubusercontent.com/80657819/168955463-27b1033a-07ea-4ce4-841a-f9ff44d731b4.png" width="200px"/>
+
 ## Main
 
 ---
