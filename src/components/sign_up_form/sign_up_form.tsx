@@ -14,7 +14,7 @@ export interface IProps{
     setState: { (ref: React.RefObject<HTMLInputElement>): void },
     signUp: { (evnet: any): void },
     emailCheck: boolean,
-    passCheck: boolean,
+    passCheck: number,
     passCheck2: number,
     isPossible: boolean,
     msg:string,
@@ -29,7 +29,7 @@ const SignUpForm = ({ auth }: { auth: Auth }) => {
     const [pass, setPass] = useState<string>("");
     const [pass2, setPass2] = useState<string>("");
     const [emailCheck, setEmailCheck] = useState<boolean>(false);
-    const [passCheck, setPassCheck] = useState<boolean>(false);
+    const [passCheck, setPassCheck] = useState<number>(0);
     const [passCheck2, setPassCheck2] = useState<number>(0);
     const [isPossible, setIsPossible] = useState<boolean>(false);
     const [msg, setMsg] = useState<string>("");
@@ -67,7 +67,11 @@ const SignUpForm = ({ auth }: { auth: Auth }) => {
                     const errorMessage = error.message;
                     if (errorCode.split('/')[1] == "invalid-email") {
                         setMsg("Invalid email");
+                    } else if(errorCode.split('/')[1]== "weak-password"){ 
+                        setPassCheck(0);
+                        return;
                     } else {
+                        console.log(errorCode.split('/')[1]);
                         setMsg("Login restricted");
                     }
                     setEmailCheck(false);
@@ -90,10 +94,10 @@ const SignUpForm = ({ auth }: { auth: Auth }) => {
 
     useEffect(() => {
         if (!pass) {
-            setPassCheck(false);
+            setPassCheck(0);
             return;
         }
-        setPassCheck(true);
+        setPassCheck(2);
     }, [pass]);
 
     useEffect(() => {

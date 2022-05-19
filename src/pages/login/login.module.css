@@ -39,7 +39,7 @@
 @media screen and (max-width: 48rem) {
     .login{
         width: 90%;
-        height: 90vh;
+        height: 90%;
         padding: 1rem;
         flex-direction: column-reverse;
     }

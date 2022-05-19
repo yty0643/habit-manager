@@ -21,16 +21,24 @@ const VACSignUpForm = ({ emailRef, passRef, passRef2, email, pass, pass2, setSta
                 }
             </div>
             <div className={styles.box}>
-                <input className={`${styles.pass} ${!passCheck && styles.error}`} ref={passRef} type="password" placeholder='password' onChange={() => { setState(passRef) }} autoComplete="off"  />
+                <input className={`${styles.pass} ${!passCheck && styles.error}`} ref={passRef} type="password" placeholder='password' onChange={() => { setState(passRef) }} autoComplete="off" />             
                 {
-                    passCheck ?
-                        <div className={styles.checkIcon}>
-                            <FontAwesomeIcon icon={faCheck} />
-                        </div>
-                        :
-                        <p className={styles.msg}>
-                            Please enter your password
-                        </p>
+                    passCheck == 0 &&
+                    <p className={styles.msg}>
+                        More than 6 digits
+                    </p>
+                }
+                {
+                    passCheck == 1 &&
+                    <p className={styles.msg}>
+                        Please enter your password
+                    </p>
+                }
+                {
+                    passCheck == 2 &&
+                    <div className={styles.checkIcon}>
+                        <FontAwesomeIcon icon={faCheck} />
+                    </div>
                 }
             </div>
             <div className={styles.box}>
