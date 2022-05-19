@@ -67,11 +67,7 @@ const SignUpForm = ({ auth }: { auth: Auth }) => {
                     const errorMessage = error.message;
                     if (errorCode.split('/')[1] == "invalid-email") {
                         setMsg("Invalid email");
-                    } else if(errorCode.split('/')[1]== "weak-password"){ 
-                        setPassCheck(0);
-                        return;
                     } else {
-                        console.log(errorCode.split('/')[1]);
                         setMsg("Login restricted");
                     }
                     setEmailCheck(false);
@@ -95,6 +91,10 @@ const SignUpForm = ({ auth }: { auth: Auth }) => {
     useEffect(() => {
         if (!pass) {
             setPassCheck(0);
+            return;
+        }
+        if (pass.length < 6) {
+            setPassCheck(1);
             return;
         }
         setPassCheck(2);
