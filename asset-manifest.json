@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/habit-manager/static/css/main.89d961a5.css",
-    "main.js": "/habit-manager/static/js/main.be7d4403.js",
+    "main.css": "/habit-manager/static/css/main.b8241f9a.css",
+    "main.js": "/habit-manager/static/js/main.3c6abce1.js",
     "static/media/bg.png": "/habit-manager/static/media/bg.e9ed79fba319d07e57e2.png",
     "index.html": "/habit-manager/index.html",
-    "main.89d961a5.css.map": "/habit-manager/static/css/main.89d961a5.css.map",
-    "main.be7d4403.js.map": "/habit-manager/static/js/main.be7d4403.js.map"
+    "main.b8241f9a.css.map": "/habit-manager/static/css/main.b8241f9a.css.map",
+    "main.3c6abce1.js.map": "/habit-manager/static/js/main.3c6abce1.js.map"
   },
   "entrypoints": [
-    "static/css/main.89d961a5.css",
-    "static/js/main.be7d4403.js"
+    "static/css/main.b8241f9a.css",
+    "static/js/main.3c6abce1.js"
   ]
 }
