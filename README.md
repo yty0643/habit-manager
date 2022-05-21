@@ -63,6 +63,8 @@ VAC_box_list는 어떠한 비즈니스 로직도 없으며 stateless 컴포넌�
 
 box_list.module.css는 VAC에서만 사용하고 있다.
 
+> VAC Pattern에 대해 자세히 알고 싶다면 [VAC-design-pattern](https://github.com/yty0643/development-documents/blob/main/VAC-pattern.md)
+
 ## box_list.tsx
 
 ```typescript
