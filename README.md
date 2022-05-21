@@ -41,6 +41,116 @@ type관리를 위해 `typescript`를 활용하여 개발하고자 한다.
 
 ---
 
+# 구조
+
+폴더 세개로 구분했다.
+
+1. components (개발된 모든 컴포넌트들)
+2. pagaes (라우터로 접근할 페이지 컴포넌트)
+3. service (SDK또는 REST API 관련 비즈니스 로직이 작성된 TS폴더)
+
+각각의 컴포넌트는 3개의 파일로 구성된다. (비즈니스 로직 작성 영역 컴포넌트, VAC컴포넌트, CSS Module)
+
+예시로 `box_list` 는 다음과 같이 구성되어 있다.
+
+1. box_list.tsx
+2. VAC_box_list.tsx
+3. box_list.module.css
+
+box_list 컴포넌트의 모든 비즈니스 로직을 관리하는 파일로 VAC_box_list만을 랜더링한다.
+
+VAC_box_list는 어떠한 비즈니스 로직도 없으며 stateless 컴포넌트로, 오직 랜더링만을 담당하고 있다.
+
+box_list.module.css는 VAC에서만 사용하고 있다.
+
+## box_list.tsx
+
+```typescript
+import React, { useCallback, useEffect, useState } from "react";
+import { IHabit, IHabits } from "../../pages/main/main";
+import VACBoxList from "./VAC_box_list";
+
+export interface IBox {
+  date: string;
+  habitTime: { [key: number]: string[] };
+  totalTime: number;
+  color: string;
+}
+
+export interface IBoxes {
+  [key: string]: IBox;
+}
+
+export interface IHandleBox {
+  (id: number, today: string, boxes: IBox): void;
+}
+
+const BoxList = ({ isDark, habit }: { isDark: boolean; habit: IHabit }) => {
+  const [boxes, setBoxes] = useState<IBoxes>({});
+
+  const initBoxes: () => void = useCallback(() => {
+    const temp: IBoxes = {};
+    const day = new Date().getDay() + 1;
+    for (let i = 363 + day; i >= 0; i--) {
+      const date = new Date();
+      date.setDate(date.getDate() - i);
+      const key = date.toISOString().split("T")[0];
+      temp[key] = {
+        date: key,
+        habitTime: (habit.boxesJSON && habit.boxesJSON[key]?.habitTime) || {},
+        totalTime: (habit.boxesJSON && habit.boxesJSON[key]?.totalTime) || 0,
+        color:
+          (habit.boxesJSON && habit.boxesJSON[key]?.color) ||
+          "rgba(100, 100, 100, 0.3)", //추후 색상 수정(base color)
+      };
+    }
+    setBoxes(temp);
+  }, [habit.boxesJSON]);
+
+  useEffect(() => {
+    initBoxes();
+  }, [habit.boxesJSON]);
+
+  return <VACBoxList isDark={isDark} boxes={boxes} />;
+};
+
+export default React.memo(BoxList);
+```
+
+## VAC_box_list.tsx
+
+```typescript
+import React from "react";
+import { IBoxes } from "./box_list";
+import BoxItem from "../box_item/box_item";
+import styles from "./box_list.module.css";
+
+const VACBoxList = ({ isDark, boxes }: { isDark: boolean; boxes: IBoxes }) => {
+  return (
+    <div className={`${styles.section} ${isDark && styles.dark}`}>
+      <ul className={`${styles.boxList} ${isDark && styles.dark}`}>
+        {Object.keys(boxes).map((key) => (
+          <BoxItem key={key} isDark={isDark} box={boxes[key]} />
+        ))}
+      </ul>
+      <div className={styles.boxes}>
+        <p className={styles.discription}>less</p>
+        <div className={`${styles.box} ${styles.fir}`}></div>
+        <div className={`${styles.box} ${styles.sec}`}></div>
+        <div className={`${styles.box} ${styles.thi}`}></div>
+        <div className={`${styles.box} ${styles.fou}`}></div>
+        <div className={`${styles.box} ${styles.fiv}`}></div>
+        <p className={styles.discription}>more</p>
+      </div>
+    </div>
+  );
+};
+
+export default React.memo(VACBoxList);
+```
+
+---
+
 # 화면 구성
 
 ## Login
@@ -100,10 +210,12 @@ const HabitList = ({ habits, addHabit, delHabit } : IProps) => { ... };
 
 ## 컴포넌트 세분화
 
-프로젝트 개발중에 딱히 기록할만한게 없어서 작성을 미루다 login관련 컴포넌트가 너무 복잡하게 작성되었다고 판단되어서
-컴포넌트를 세분화 하고 이 과정을 기록하고자 한다.
+파일명, 폴더구조를 전체적으로 변경했고 자세한 내용은 `구조`목차에서 다루고 있다.
 
-아직 개발단계라 VAC 이지만 useState를 사용했다. (추후 state를 따로 분리할 예정이었음)
+~~프로젝트 개발중에 딱히 기록할만한게 없어서 작성을 미루다 login관련 컴포넌트가 너무 복잡하게 작성되었다고 판단되어서~~
+~~컴포넌트를 세분화 하고 이 과정을 기록하고자 한다.~~
+
+~~아직 개발단계라 VAC 이지만 useState를 사용했다. (추후 state를 따로 분리할 예정이었음)~~
 
 개선 전
 
@@ -291,12 +403,12 @@ const Login = ({ auth }: { auth: Auth }) => {
 export default Login;
 ```
 
-> 개선 전 `VACLogin` 하나의 컴포넌트를 VAC 디자인 패턴을 적용하여 재사용 가능한 여러 컴포넌트로 분리하여 개발했다.
+> ~~개선 전 `VACLogin` 하나의 컴포넌트를 VAC 디자인 패턴을 적용하여 재사용 가능한 여러 컴포넌트로 분리하여 개발했다.~~
 >
-> 개선 후 `Login` Page component가 간단하고 직관적으로 설계된것을 확인할 수 있다.
+> ~~개선 후 `Login` Page component가 간단하고 직관적으로 설계된것을 확인할 수 있다.~~
 >
-> VC와 VAC는 각각 아래와 같이 설계되었다.
+> ~~VC와 VAC는 각각 아래와 같이 설계되었다.~~
 >
-> VC: `SignInForm`, `SignInBtn`, `Info`, `LinkBtn`
+> ~~VC: `SignInForm`, `SignInBtn`, `Info`, `LinkBtn`~~
 >
-> VAC: `VACSignInForm`, `VACSignInBtn`, `VACInfo`, `MiniBox`, `LinkBtn`, `Separator`, `Logo`
+> ~~VAC: `VACSignInForm`, `VACSignInBtn`, `VACInfo`, `MiniBox`, `LinkBtn`, `Separator`, `Logo`~~
