@@ -11,7 +11,7 @@ const VACUser = ({ isDark, user, info, img, onChange }: { isDark: boolean, user:
         <div className={styles.user}>
             <label className={`${styles.profile} ${isDark && styles.dark}`} htmlFor="ex_file">
                 <input className={styles.input} type="file" id="ex_file" onChange={onChange} accept=".jpg, .png"/>
-                <img className={styles.img} src={img || image} />
+                <img className={styles.img} src={img || image} alt={"Profile"}/>
                 <div className={styles.cover}>
                     <FontAwesomeIcon icon={faImage} />
                 </div>
@@ -19,7 +19,7 @@ const VACUser = ({ isDark, user, info, img, onChange }: { isDark: boolean, user:
             <div className={`${styles.info} ${isDark && styles.dark}`}>
                 <div>
                     <p className={styles.description}>sign in as </p>
-                    <p className={styles.value}>{user.email.split('@')[0]}</p>
+                    <p className={styles.value}>{user.name.split('@')[0]}</p>
                 </div>
                 <div>
                     <p className={styles.value}>{info.habitCount}</p>

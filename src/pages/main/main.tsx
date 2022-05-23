@@ -16,7 +16,7 @@ import ActivityList from '../../components/activity_list/activity_list';
 import HabitDelBtn from '../../components/habit_del_btn/habit_del_btn';
 
 export interface IUser{
-    email: string,
+    uid: string,
     name: string
 };
 
@@ -45,8 +45,8 @@ const Main = ({ auth, db }: { auth: Auth, db: Database }) => {
             .getUser()
             .then((res: any) => {
                 setUser({
-                    email: res.providerData[0].email.split('.')[0],
-                    name: res.reloadUserInfo.displayName,
+                    uid: res.uid,
+                    name: res.reloadUserInfo.displayName || res.reloadUserInfo.email,
                 });
             })
             .catch((error: any) => {
@@ -58,14 +58,14 @@ const Main = ({ auth, db }: { auth: Auth, db: Database }) => {
     useEffect(() => {
         if (!user) return;
         db
-            .read(user.email, `user/${user.email}/habits`)
+            .read(user.uid, `user/${user.uid}/habits`)
             .then(res => setHabits(res));
         
     }, [user]);
 
     useEffect(() => {
         if (!user) return;
-        db.write(user.email, `user/${user.email}/habits/`, habits);
+        db.write(user.uid, `user/${user.uid}/habits/`, habits);
     }, [habits]);
 
     return (

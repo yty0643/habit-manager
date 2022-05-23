@@ -22,7 +22,7 @@ const User = ({ db, isDark, user, habits }: { db: Database, isDark: boolean, use
     const onChange: IOnChange = (event) => {
         if (!event.target.files.length) return;
         const file = event.target.files[0];
-        if (!(file.name.split('.')[1] == 'jpg' || file.name.split('.')[1] == 'png')) return;
+        if (!(file.name.split('.')[1] === 'jpg' || file.name.split('.')[1] === 'png')) return;
         const fileReader = new FileReader();
         fileReader.onloadend = () => {
             setImg(fileReader.result);
@@ -32,7 +32,7 @@ const User = ({ db, isDark, user, habits }: { db: Database, isDark: boolean, use
 
     useEffect(() => {
         db
-            .read(user.email, `user/${user.email}/info`)
+            .read(user.uid, `user/${user.uid}/info`)
             .then(res => {
                 if (!res) throw new Error("No data available");
                 setImg(res.img);
@@ -45,7 +45,7 @@ const User = ({ db, isDark, user, habits }: { db: Database, isDark: boolean, use
     useEffect(() => {
         if (!img) return;
         db
-            .write(user.email, `user/${user.email}/info`, { img });
+            .write(user.uid, `user/${user.uid}/info`, { img });
     }, [img]);
 
     useEffect(() => {
